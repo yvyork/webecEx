@@ -29,8 +29,8 @@ Es können neue Geräte erfasst und gelöscht werden. Weiter ist es möglich, ei
 
 ### Extras
 
-BEM\
-Vielleicht ein Implementierung von QR-Codes um Geräte schnell zu erfassen. 
+1. BEM
+2. TBA 
 
 ## Installation and run instructions
 
