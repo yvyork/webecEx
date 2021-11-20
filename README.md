@@ -24,8 +24,13 @@ Die Geräte können unterschiedliche Status haben (zb. Persönlich, Pool, Repara
 Ein Gerät kann unterschiedliches Zubehört haben (Tastatur, Maus, etc).
 Es können neue Geräte erfasst und gelöscht werden. Weiter ist es möglich, einem bestehenden Gerät einen neuen Standort oder persönlichen Nutzer zuzuweisen oder desses Status zu ändern. Wird ein Gerät auf den Status 'Defekt' gesetzt, soll es automatisch aus der Datenbank gelöscht werden. 
 
+## ERM
 
-![Untitled Diagram (1) drawio](https://user-images.githubusercontent.com/61004874/142723921-2a3e10e1-aa68-4024-9225-ff0725f3aefb.png)
+![ERM_UML-ERM](https://user-images.githubusercontent.com/61004874/142725725-b693890e-7ce3-4fbd-8fc4-a2c6d3af17aa.png)
+
+## UML
+
+![UML](https://user-images.githubusercontent.com/61004874/142725720-ee98ff70-cc5e-49fe-b232-2b0e3df26b1b.png)
 
 ### Extras
 
