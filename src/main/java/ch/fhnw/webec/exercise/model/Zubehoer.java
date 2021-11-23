@@ -12,6 +12,7 @@ public class Zubehoer {
     //TODO add auto increment
     private Integer id;
 
+
     private String name;
     String hersteller;
     String tastaturBelegung;
