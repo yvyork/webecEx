@@ -5,13 +5,15 @@ import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Entity
-@IdClass(StandortId.class)
-public class Standort {
+public class Location {
 
     @Id
+    private int standortId;
+
+    @NotEmpty
     private String gebaeudeBezeichnung;
 
-    @Id
+    @NotEmpty
     private String raumBezeichnung;
 
     @NotEmpty
@@ -20,10 +22,10 @@ public class Standort {
     @NotEmpty
     private String plzOrt;
 
-    @OneToMany(mappedBy = "standort")
+    @OneToMany(mappedBy = "location")
     private List<Device> devices;
 
-    public Standort(){}
+    public Location(){}
 
     public String getGebaeudeBezeichnung() {
         return gebaeudeBezeichnung;

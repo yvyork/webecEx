@@ -2,14 +2,21 @@ package ch.fhnw.webec.exercise.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 @Entity
 public class Status {
     @Id
     private int statusId;
+
     @NotEmpty
     private String status;
+
+    @OneToMany(mappedBy = "status")
+    private List<Device> deviceList;
 
     public Status() {}
 

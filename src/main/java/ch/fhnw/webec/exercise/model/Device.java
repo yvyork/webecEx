@@ -1,36 +1,37 @@
 package ch.fhnw.webec.exercise.model;
 // TODO persistence or hibernate?
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
-import java.util.Date;
 
-//TODO commit to one language en or ge.
 /**
  * Class that represents an electronic device in the inventory
  */
 @Entity
 public class Device {
 
-    //TODO easier to use an incrementing PK as ID?
     @Id
-    protected String serialNumber;
+    private String serialNumber;
+
+    @NotEmpty
+    private String model;
+    @NotEmpty
+    private double displaySize;
+    @NotEmpty
+    private String processor;
+    @NotEmpty
+    private LocalDate purchaseDate;
+    @NotEmpty
+    private int memory;
+    @NotEmpty
+    private String manufacturer;
+    @ManyToOne
+    private Location location;
+    @ManyToOne
+    private Status status;
 
 
-    protected String model;
-    protected double displaySize;
-    protected String processor;
-    protected LocalDate purchaseDate;
-    protected int memory;
-    protected String manufacturer;
-    //TODO implement class Standort;
 
-    // temporaty constructor for testing
-    public Device(String model, double displaySize, String processor, LocalDate purchaseDate, int memory, String manufacturer) {};
-
-    // no-arg constructor
     public Device() {}
 
 

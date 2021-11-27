@@ -7,6 +7,6 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public class DeviceRepository extends JpaRepository<Device, Integer> {
+public interface DeviceRepository extends JpaRepository<Device, Integer> {
 
 }

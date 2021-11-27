@@ -6,8 +6,5 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class InventoryController {
-    @Autowired
-    private DeviceRepository deviceRepository;
-    @Autowired
-    private ZubehoerRepository zubehoerRepository;
+
 }
