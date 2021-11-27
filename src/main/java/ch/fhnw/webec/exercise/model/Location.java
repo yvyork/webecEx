@@ -11,7 +11,7 @@ public class Location {
     private int locationId;
 
     @NotEmpty
-    private String buildindName;
+    private String buildingName;
 
     @NotEmpty
     private String roomName;
@@ -35,12 +35,12 @@ public class Location {
         this.locationId = locationId;
     }
 
-    public String getBuildindName() {
-        return buildindName;
+    public String getBuildingName() {
+        return buildingName;
     }
 
-    public void setBuildindName(String buildindName) {
-        this.buildindName = buildindName;
+    public void setBuildingName(String buildingName) {
+        this.buildingName = buildingName;
     }
 
     public String getRoomName() {
