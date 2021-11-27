@@ -8,55 +8,63 @@ import java.util.List;
 public class Location {
 
     @Id
-    private int standortId;
+    private int locationId;
 
     @NotEmpty
-    private String gebaeudeBezeichnung;
+    private String buildindName;
 
     @NotEmpty
-    private String raumBezeichnung;
+    private String roomName;
 
     @NotEmpty
-    private String strasseNr;
+    private String streetAndNumber;
 
     @NotEmpty
-    private String plzOrt;
+    private String zipCity;
 
     @OneToMany(mappedBy = "location")
     private List<Device> devices;
 
     public Location(){}
 
-    public String getGebaeudeBezeichnung() {
-        return gebaeudeBezeichnung;
+    public int getLocationId() {
+        return locationId;
     }
 
-    public void setGebaeudeBezeichnung(String gebaeudeBezeichnung) {
-        this.gebaeudeBezeichnung = gebaeudeBezeichnung;
+    public void setLocationId(int locationId) {
+        this.locationId = locationId;
     }
 
-    public String getRaumBezeichnung() {
-        return raumBezeichnung;
+    public String getBuildindName() {
+        return buildindName;
     }
 
-    public void setRaumBezeichnung(String raumBezeichnung) {
-        this.raumBezeichnung = raumBezeichnung;
+    public void setBuildindName(String buildindName) {
+        this.buildindName = buildindName;
     }
 
-    public String getStrasseNr() {
-        return strasseNr;
+    public String getRoomName() {
+        return roomName;
     }
 
-    public void setStrasseNr(String strasseNr) {
-        this.strasseNr = strasseNr;
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
     }
 
-    public String getPlzOrt() {
-        return plzOrt;
+    public String getStreetAndNumber() {
+        return streetAndNumber;
     }
 
-    public void setPlzOrt(String plzOrt) {
-        this.plzOrt = plzOrt;
+    public void setStreetAndNumber(String streetAndNumber) {
+        this.streetAndNumber = streetAndNumber;
+    }
+
+    public String getZipCity() {
+        return zipCity;
+    }
+
+    public void setZipCity(String zipCity) {
+        this.zipCity = zipCity;
     }
 
     public List<Device> getDevices() {
