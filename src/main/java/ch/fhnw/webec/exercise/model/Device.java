@@ -7,10 +7,14 @@ import javax.persistence.InheritanceType;
 import java.time.LocalDate;
 import java.util.Date;
 
+//TODO commit to one language en or ge.
+/**
+ * Class that represents an electronic device in the inventory
+ */
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-
 public class Device {
+
+    //TODO easier to use an incrementing PK as ID?
     @Id
     protected String serialNumber;
 
