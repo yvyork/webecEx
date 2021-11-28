@@ -17,7 +17,7 @@ public class Status {
     private int statusId;
 
     @NotEmpty
-    private String status;
+    private String name;
 
     @OneToMany(mappedBy = "status")
     private List<Device> deviceList = new ArrayList<>();
@@ -32,12 +32,12 @@ public class Status {
         this.statusId = statusId;
     }
 
-    public String getStatus() {
-        return status;
+    public String getName() {
+        return name;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setName(String status) {
+        this.name = status;
     }
 
     public List<Device> getDevices() {
