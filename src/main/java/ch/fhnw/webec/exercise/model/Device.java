@@ -15,28 +15,36 @@ public class Device {
 
     @NotEmpty
     private String model;
+
     @NotEmpty
     private double displaySize;
+
     @NotEmpty
     private String processor;
+
     @NotEmpty
     private LocalDate purchaseDate;
+
     @NotEmpty
     private int memory;
+
     @NotEmpty
     private String manufacturer;
+
     @ManyToOne
     private Location location;
+
     @ManyToOne
     private Status status;
 
-
-
     public Device() {}
-
 
     public String getSerialNumber() {
         return serialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
     }
 
     public String getModel() {
@@ -53,10 +61,6 @@ public class Device {
 
     public void setDisplaySize(double displaySize) {
         this.displaySize = displaySize;
-    }
-
-    public void setSerialNumber(String serialNumber) {
-        this.serialNumber = serialNumber;
     }
 
     public String getProcessor() {
@@ -90,4 +94,19 @@ public class Device {
     public void setManufacturer(String manufacturer) {
         this.manufacturer = manufacturer;
     }
+
+    public Location getLocation(){ return location; }
+
+    public void setLocation(Location location) {
+        this.location = location;
+        this.location.addDevice(this);
+    }
+
+    public Status getStatus(){ return status; }
+
+    public void setStatus(Status status) {
+        this.status = status;
+        this.status.addDevice(this);
+    }
+
 }

@@ -2,11 +2,15 @@ package ch.fhnw.webec.exercise.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class that represents a status of a device
+ * it has a one to many relation to devices
+ */
 @Entity
 public class Status {
     @Id
@@ -16,7 +20,7 @@ public class Status {
     private String status;
 
     @OneToMany(mappedBy = "status")
-    private List<Device> deviceList;
+    private List<Device> deviceList = new ArrayList<>();
 
     public Status() {}
 
@@ -34,5 +38,22 @@ public class Status {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public List<Device> getDevices() {
+        return deviceList;
+    }
+
+    public void setDevices(List<Device> devices) { this.deviceList = devices; }
+
+    public void addDevice(Device device) {
+        if (device != null) {
+            if (!this.getDevices().contains(device)) {
+                this.getDevices().add(device);
+            }
+            if (device.getStatus() != this ) {
+                device.setStatus(this);
+            }
+        }
     }
 }

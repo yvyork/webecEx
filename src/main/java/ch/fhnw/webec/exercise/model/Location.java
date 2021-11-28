@@ -2,8 +2,13 @@ package ch.fhnw.webec.exercise.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class that represents a location of a device
+ * it has a one to many relation to devices
+ */
 @Entity
 public class Location {
 
@@ -23,7 +28,7 @@ public class Location {
     private String zipCity;
 
     @OneToMany(mappedBy = "location")
-    private List<Device> devices;
+    private List<Device> devices = new ArrayList<>();
 
     public Location(){}
 
@@ -73,5 +78,16 @@ public class Location {
 
     public void setDevices(List<Device> devices) {
         this.devices = devices;
+    }
+
+    public void addDevice(Device device){
+        if (device != null){
+            if (!this.getDevices().contains(device)) {
+                this.getDevices().add(device);
+            }
+            if (device.getLocation() != this ){
+                device.setLocation(this);
+            }
+        }
     }
 }
