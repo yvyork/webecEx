@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Yves Bächer, Rainer Lehner">
+        <meta name="description" content="Device Management project for the module webeC">
+
+        <title>{% block title %}Device Management{% endblock %}</title>
+
+</head>
+<body>
+    <main class="main">
+        <div class="main__container container">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+</body>
+</html>
