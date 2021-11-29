@@ -14,13 +14,13 @@
     <p class="status-detail_name">{{ "Status Name: " + status.name}}</p>
 
     <div class="status-detail__buttons">
-        <form action="{{ href('/status/' + status.statusId + '/edit') }}" method="get" class="status-detail__edit-form">
+        <form action="{{ href('/statuses/' + status.statusId + '/edit') }}" method="get" class="status-detail__edit-form">
             <input type="submit" value="Edit" class="button">
         </form>
-        <form action="{{ href('/status/' + status.statusId + '/delete') }}" method="post" class="status-detail__delete-form">
+        <form action="{{ href('/statuses/' + status.statusId + '/delete') }}" method="post" class="status-detail__delete-form">
             <input type="submit" value="Delete" class="button">
         </form>
-        <form action="{{ href('/status/') }}" method="get" class="status-detail__back-form">
+        <form action="{{ href('/statuses/') }}" method="get" class="status-detail__back-form">
             <input type="submit" value="Back" class="button">
         </form>
     </div>
