@@ -1,4 +1,4 @@
-{# @pebvariable name="book" type="ch.fhnw.webec.exercise.model.Location" #}
+{# @pebvariable name="location" type="ch.fhnw.webec.exercise.model.Location" #}
 
 {% extends "layout/default" %}
 
