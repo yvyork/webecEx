@@ -4,5 +4,5 @@
 
 {% block content %}
     <h1 class="heading heading--size-1">Error 404</h1>
-    <p>Page not found!</p>
+    <p>Sorry, the requested page could not be found!</p>
 {% endblock %}
