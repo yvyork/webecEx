@@ -2,6 +2,8 @@ package ch.fhnw.webec.exercise.model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import javax.validation.Validator;
@@ -25,9 +27,9 @@ public class LocationUnitTest {
         location = new Location();
     }
 
-    private void createIPad() {
+    private void createIPad(int counter) {
         device = new Device();
-        device.setSerialNumber(TestHelper.IPAD_SERIALNUMBER);
+        device.setSerialNumber(TestHelper.IPAD_SERIALNUMBER.concat(String.valueOf(counter)));
         device.setManufacturer(TestHelper.IPAD_MANUFACTURER);
         device.setModel(TestHelper.IPAD_MODEL);
         device.setDisplaySize(TestHelper.IPAD_DISPLAYSIZE);
@@ -52,33 +54,52 @@ public class LocationUnitTest {
         assertEquals(location, device.getLocation());
     }
 
-    @Test
-    public void testAddIpad(){
-        // given
-        createIPad();
-        int expectedDeviceListCount = 1;
+    @ParameterizedTest
+    @ValueSource(ints = {1, 10, 100})
+    public void testAddIpad(int deviceCounter){
+        location = new Location();
 
-        // when
         assertEquals(0, location.getDevices().size());
-        assertNull(device.getLocation());
-        location.addDevice(device);
+
+        for (int i = 0; i < deviceCounter; i++){
+            // given
+            createIPad(i + 1);
+            // when
+            assertNull(device.getLocation());
+            location.addDevice(device);
+        }
 
         // then
-        assertEquals(expectedDeviceListCount, location.getDevices().size());
+        assertEquals(deviceCounter, location.getDevices().size());
         assertTrue(location.getDevices().contains(device));
         assertEquals(location, device.getLocation());
-        assertEquals(TestHelper.IPAD_SERIALNUMBER, device.getSerialNumber());
-        assertEquals(TestHelper.IPAD_MANUFACTURER, device.getManufacturer());
-        assertEquals(TestHelper.IPAD_MODEL, device.getModel());
-        assertEquals(TestHelper.IPAD_DISPLAYSIZE, device.getDisplaySize());
-        assertEquals(TestHelper.IPAD_PROCESSOR, device.getProcessor());
-        assertEquals(TestHelper.IPAD_MEMORY, device.getMemory());
+
+        for (int i = 0; i < deviceCounter; i++){
+            assertEquals(TestHelper.IPAD_SERIALNUMBER.concat(String.valueOf(i + 1)),
+                           location.getDevices().get(i).getSerialNumber());
+        }
+
+        assertEquals(TestHelper.IPAD_MANUFACTURER, location.getDevices().get(0).getManufacturer());
+        assertEquals(TestHelper.IPAD_MODEL, location.getDevices().get(0).getModel());
+        assertEquals(TestHelper.IPAD_DISPLAYSIZE, location.getDevices().get(0).getDisplaySize());
+        assertEquals(TestHelper.IPAD_PROCESSOR, location.getDevices().get(0).getProcessor());
+        assertEquals(TestHelper.IPAD_MEMORY, location.getDevices().get(0).getMemory());
+    }
+
+    @Test
+    public void testAddNullDevice() {
+        // given
+        // when
+        // then
+        NullPointerException exception = assertThrows(NullPointerException.class, () -> location.addDevice(device));
+        assertEquals(Location.NULLDEVICE, exception.getMessage());
+        assertEquals(0, location.getDevices().size());
+        assertThrows(NullPointerException.class, () -> device.getLocation());
     }
 
     @Test
     public void testValidation() {
         var validator = createValidator();
-        var location = new Location();
         var constraintViolations = validator.validate(location);
         assertEquals(4, constraintViolations.size());
 
