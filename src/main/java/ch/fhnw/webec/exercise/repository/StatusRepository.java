@@ -1,6 +1,5 @@
 package ch.fhnw.webec.exercise.repository;
 
-import ch.fhnw.webec.exercise.model.Location;
 import ch.fhnw.webec.exercise.model.Status;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

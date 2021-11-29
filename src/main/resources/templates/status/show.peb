@@ -1,0 +1,28 @@
+{# @pebvariable name="status" type="ch.fhnw.webec.exercise.model.Status" #}
+
+{% extends "layout/default" %}
+
+{% import "form/input" %}
+{% import "form/select" %}
+{% import "form/submit" %}
+
+{% block name %}{{ status.name }}{% endblock %}
+
+{% block content %}
+<section class="status-detail">
+    <h1 class="heading heading--size-1">{{ "Status ID: " + status.statusId}}</h1>
+    <p class="status-detail_name">{{ "Status Name: " + status.name}}</p>
+
+    <div class="status-detail__buttons">
+        <form action="{{ href('/status/' + status.statusId + '/edit') }}" method="get" class="status-detail__edit-form">
+            <input type="submit" value="Edit" class="button">
+        </form>
+        <form action="{{ href('/status/' + status.statusId + '/delete') }}" method="post" class="status-detail__delete-form">
+            <input type="submit" value="Delete" class="button">
+        </form>
+        <form action="{{ href('/status/') }}" method="get" class="status-detail__back-form">
+            <input type="submit" value="Back" class="button">
+        </form>
+    </div>
+</section>
+{% endblock %}
