@@ -1,6 +1,8 @@
 package ch.fhnw.webec.exercise.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +13,8 @@ import java.util.List;
  */
 @Entity
 public class Location {
+
+    public static final String NULLDEVICE = "There is no device to add";
 
     @Id
     private int locationId;
@@ -81,13 +85,15 @@ public class Location {
     }
 
     public void addDevice(Device device){
-        if (device != null){
+        if (device != null) {
             if (!this.getDevices().contains(device)) {
                 this.getDevices().add(device);
             }
-            if (device.getLocation() != this ){
+            if (device.getLocation() != this) {
                 device.setLocation(this);
             }
+        } else {
+            throw new NullPointerException(NULLDEVICE);
         }
     }
 }

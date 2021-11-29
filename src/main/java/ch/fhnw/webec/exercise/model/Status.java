@@ -54,6 +54,9 @@ public class Status {
             if (device.getStatus() != this ) {
                 device.setStatus(this);
             }
+        } else {
+            throw new NullPointerException(Location.NULLDEVICE);
         }
+
     }
 }
