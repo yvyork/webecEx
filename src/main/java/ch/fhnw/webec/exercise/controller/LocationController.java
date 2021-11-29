@@ -73,5 +73,4 @@ public class LocationController {
         this.locationRepository.delete(this.locationRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
         return "redirect:/locations/";
     }
-
 }
