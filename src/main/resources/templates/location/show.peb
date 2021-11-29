@@ -6,7 +6,7 @@
 {% import "form/select" %}
 {% import "form/submit" %}
 
-{% block title %}{{ book.title }}{% endblock %}
+{% block buildingName %}{{ location.buildingName }}{% endblock %}
 
 {% block content %}
 <section class="location-detail">
