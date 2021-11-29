@@ -15,7 +15,7 @@ public class Device {
 
     @NotEmpty
     private String model;
-
+    // TODO: 29.11.21 change displaySize to type string?
     @NotEmpty
     private double displaySize;
 
@@ -24,7 +24,7 @@ public class Device {
 
     @NotEmpty
     private LocalDate purchaseDate;
-
+    // TODO: 29.11.21 change memory to type string?
     @NotEmpty
     private int memory;
 
