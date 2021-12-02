@@ -17,7 +17,7 @@ public class Device {
     private String model;
 
     @NotEmpty
-    private double displaySize;
+    private String displaySize;
 
     @NotEmpty
     private String processor;
@@ -26,7 +26,7 @@ public class Device {
     private LocalDate purchaseDate;
 
     @NotEmpty
-    private int memory;
+    private String memory;
 
     @NotEmpty
     private String manufacturer;
@@ -55,11 +55,11 @@ public class Device {
         this.model = model;
     }
 
-    public double getDisplaySize() {
+    public @NotEmpty String getDisplaySize() {
         return displaySize;
     }
 
-    public void setDisplaySize(double displaySize) {
+    public void setDisplaySize(@NotEmpty String displaySize) {
         this.displaySize = displaySize;
     }
 
@@ -79,11 +79,11 @@ public class Device {
         this.purchaseDate = purchaseDate;
     }
 
-    public int getMemory() {
+    public @NotEmpty String getMemory() {
         return memory;
     }
 
-    public void setMemory(int memory) {
+    public void setMemory(@NotEmpty String memory) {
         this.memory = memory;
     }
 

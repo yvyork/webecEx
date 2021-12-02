@@ -26,7 +26,7 @@ Es können neue Geräte erfasst und gelöscht werden. Weiter ist es möglich, ei
 
 ## ERM
 
-![ERM_UML-ERM](https://user-images.githubusercontent.com/61004874/142725725-b693890e-7ce3-4fbd-8fc4-a2c6d3af17aa.png)
+![ermLatest-Page-1](https://user-images.githubusercontent.com/61004874/143672588-b30974d7-c612-488d-9c40-df62149a20d6.jpg)
 
 ## UML
 
