@@ -13,6 +13,7 @@ import java.util.List;
  */
 @Entity
 public class Status {
+
     @Id
     private int statusId;
 

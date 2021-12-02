@@ -8,5 +8,19 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface DeviceRepository extends JpaRepository<Device, Integer> {
+    @Query("""
+        Select device
+            FROM Device device
+        WHERE LOWER(device.model) LIKE LOWER(CONCAT('%', :search, '%'))
+            OR LOWER(device.manufacturer) LIKE LOWER(CONCAT('%', :search, '%'))
+            OR LOWER(device.serialNumber) LIKE LOWER(CONCAT('%', :search, '%'))
+            OR LOWER(device.displaySize) LIKE LOWER(CONCAT('%', :search, '%'))
+            OR LOWER(device.processor) LIKE LOWER(CONCAT('%', :search, '%'))
+            OR LOWER(device.memory) LIKE LOWER(CONCAT('%', :search, '%'))
+            OR LOWER(device.purchaseDate) LIKE LOWER(CONCAT('%', :search, '%'))
+    """)
+
+
+    List<Device> findBySearch(@Param("search") String search);
 
 }

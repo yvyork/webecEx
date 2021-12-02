@@ -11,6 +11,10 @@ import java.time.LocalDate;
 public class Device {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int deviceId;
+
+    @NotEmpty
     private String serialNumber;
 
     @NotEmpty
@@ -38,6 +42,14 @@ public class Device {
     private Status status;
 
     public Device() {}
+
+    public int getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(int deviceId) {
+        this.deviceId = deviceId;
+    }
 
     public String getSerialNumber() {
         return serialNumber;

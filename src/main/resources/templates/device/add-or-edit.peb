@@ -1,0 +1,23 @@
+{# @pebvariable name="devices" type="java.util.List<ch.fhnw.webec.exercise.model.Device>" #}
+{# @pebvariable name="search" type="java.lang.String" #}
+
+{% extends "layout/default" %}
+
+{% import "form/input" %}
+{% import "form/select" %}
+{% import "form/submit" %}
+
+{% block content %}
+    <form method="post" class="form">
+        {{ input("device", "Device Id", "deviceId", "text", device.deviceId, _context) }}
+        {{ input("device", "Serial Number", "serialNumber", "text", device.serialNumber, _context) }}
+        {{ input("device", "Manufacturer", "manufacturer", "text", device.manufacturer, _context) }}
+        {{ input("device", "Display Size", "displaySize", "text", device.displaySize, _context) }}
+        {{ input("device", "Processor", "processor", "text", device.processor, _context) }}
+        {{ input("device", "Purchase Date", "purchaseDate", "text", device.purchaseDate, _context) }}
+        {{ submit("Save") }}
+    </form>
+
+{% endblock %}
+
+

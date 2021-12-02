@@ -1,0 +1,34 @@
+{# @pebvariable name="device" type="ch.fhnw.webec.exercise.model.Device" #}
+
+{% extends "layout/default" %}
+
+{% import "form/input" %}
+{% import "form/select" %}
+{% import "form/submit" %}
+
+{% block deviceName %}{{ device.deviceName }}{% endblock %}
+
+    {% block content %}
+        <section class="device-detail">
+            <h1 class="heading heading--size-1">{{ "Model: " + device.model }}</h1>
+            <p class="device-detail_manufacturer">{{ "Manufacturer: " + device.manufacturer }}</p>
+            <p class="device-detail_serialNumber">{{ "Serial Number: " +device.serialNumber }}</p>
+            <p class="device-detail_displaySize">{{ "Display Size: " + device.displaySize }}</p>
+            <p class="device-detail_processor">{{ "Processor: " + device.processor }}</p>
+            <p class="device-detail_memory">{{ "Memory: " + device.memory }}</p>
+            <p class="device-detail_purchaseDate">{{ "Purchase Date: " + device.purchaseDate }}</p>
+
+            <div class="device-detail__buttons">
+                <form action="{{ href('/devices/' + device.deviceId + '/edit') }}" method="get" class="device-detail__edit-form">
+                    <input type="submit" value="Edit" class="button">
+                </form>
+                <form action="{{ href('/devices/' + device.deviceId + '/delete') }}" method="post" class="device-detail__delte-form">
+                    <input type="submit" value="Delete" class="button">
+                </form>
+                <form action="{{ href('/devices/') }}" method="get" class="location-detail__back-form">
+                    <input type="submit" value="Back" class="button">
+                </form>
+            </div>
+        </section>
+    {% endblock %}
+
