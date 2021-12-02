@@ -2,8 +2,13 @@ package ch.fhnw.webec.exercise.model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.validation.Validator;
+//import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+
+import javax.validation.Validator;
+
+
+import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,11 +27,12 @@ class DeviceUnitTest {
     @BeforeEach
     void setUp() {
         device = new Device();
+        createMacBook();
         status = new Status();
         location = new Location();
     }
 
-    private void createMacBook(int counter) {
+    private void createMacBook() {
         device.setSerialNumber(TestHelper.MACBOOK_SERIALNUMBER);
         device.setModel(TestHelper.MACBOOK_MODEL);
         device.setDisplaySize(TestHelper.MACBOOK_DISPLAYSIZE);
@@ -73,6 +79,29 @@ class DeviceUnitTest {
         location.setStreetAndNumber("Schanzengraben 11");
         String newStreet = location.getStreetAndNumber();
         assertEquals(newStreet, device.getLocation().getStreetAndNumber());
+    }
+
+    @Test
+    void purchaseDateTest() {
+        LocalDate date = LocalDate.now();
+        assertEquals(date, device.getPurchaseDate());
+    }
+
+    @Test
+    public void testValidation() {
+        var validator = createValidator();
+        var constraintViolations = validator.validate(device);
+        assertEquals(0, constraintViolations.size());
+
+        device.setMemory(null);
+
+        // set one field to null
+        constraintViolations = validator.validate(device);
+        assertEquals(1, constraintViolations.size());
+
+        for (var violation : constraintViolations) {
+            assertEquals("must not be empty", violation.getMessage());
+        }
     }
 
 }

@@ -99,12 +99,28 @@ public class LocationUnitTest {
 
     @Test
     public void testValidation() {
+        Location location = getLocation();
+
         var validator = createValidator();
         var constraintViolations = validator.validate(location);
-        assertEquals(4, constraintViolations.size());
+        assertEquals(0, constraintViolations.size());
+
+        location.setBuildingName(null);
+        constraintViolations = validator.validate(location);
+        assertEquals(1, constraintViolations.size());
 
         for (var violation: constraintViolations) {
             assertEquals("must not be empty", violation.getMessage());
         }
     }
+
+    private Location getLocation() {
+        var location = new Location();
+        location.setStreetAndNumber(TestHelper.LOCATION_STREET);
+        location.setRoomName(TestHelper.LOCATION_ROOMNAME);
+        location.setBuildingName(TestHelper.LOCATION_BUILDINGNAME);
+        location.setZipCity(TestHelper.LOCATION_ZIP);
+        return location;
+    }
 }
+
