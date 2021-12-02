@@ -59,6 +59,7 @@ public class LocationControllerIntegrationTest {
     }
 
     @Test
+    //TODO: search functionality is not yet implemented
     public void testSearch() throws Exception {
         // given
         var search = "flügel";
