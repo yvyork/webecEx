@@ -1,9 +1,10 @@
 package ch.fhnw.webec.exercise.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import org.hibernate.validator.constraints.Length;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,24 +18,37 @@ public class Location {
     public static final String NULLDEVICE = "There is no device to add";
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int locationId;
 
     @NotEmpty
+    @Length(min = 1, max = 255)
     private String buildingName;
 
     @NotEmpty
+    @Length(min = 1, max = 255)
     private String roomName;
 
     @NotEmpty
+    @Length(min = 1, max = 255)
     private String streetAndNumber;
 
     @NotEmpty
+    @Length(min = 1, max = 255)
     private String zipCity;
 
     @OneToMany(mappedBy = "location")
     private List<Device> devices = new ArrayList<>();
 
     public Location(){}
+
+    public Location(String buildingName, String roomName, String streetAndNumber, String zipCity){
+        this();
+        this.buildingName = buildingName;
+        this.roomName = roomName;
+        this.streetAndNumber = streetAndNumber;
+        this.zipCity = zipCity;
+    }
 
     public int getLocationId() {
         return locationId;

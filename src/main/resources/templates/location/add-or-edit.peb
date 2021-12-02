@@ -9,7 +9,6 @@
 
 {% block content %}
     <form method="post" class="form">
-        {{ input("location", "Location Id", "locationId", "text", location.locationId, _context) }}
         {{ input("location", "Building Name", "buildingName", "text", location.buildingName, _context) }}
         {{ input("location", "Room Name", "roomName", "text", location.roomName, _context) }}
         {{ input("location", "Street and Number", "streetAndNumber", "text", location.streetAndNumber, _context) }}

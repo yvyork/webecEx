@@ -1,9 +1,10 @@
 package ch.fhnw.webec.exercise.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import org.hibernate.validator.constraints.Length;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,15 +15,22 @@ import java.util.List;
 @Entity
 public class Status {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int statusId;
 
     @NotEmpty
+    @Length(min = 1, max = 255)
     private String name;
 
     @OneToMany(mappedBy = "status")
     private List<Device> deviceList = new ArrayList<>();
 
     public Status() {}
+
+    public Status(String name) {
+        this();
+        this.name = name;
+    }
 
     public int getStatusId() {
         return statusId;
