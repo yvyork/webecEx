@@ -14,7 +14,6 @@ import static org.mockito.Mockito.*;
 public class StatusUnitTest {
 
     public final String NODEVICE = "There is no device to add";
-    public final String SERIALNUMMER = "ABCD";
     private Device mockDevice;
     private Status status;
 
@@ -65,11 +64,11 @@ public class StatusUnitTest {
         assertEquals(mockDeviceCounter, status.getDevices().size());
         assertTrue(status.getDevices().contains(mockDevice));
 
-        verify(this.mockDevice,times(2)).getStatus();
+        verify(this.mockDevice, times(2)).getStatus();
     }
 
     @Test
-    public void testAddNullStatus() {
+    public void testAddNullDevice() {
         // given
         mockDevice = mock(Device.class);
         // then
@@ -77,11 +76,12 @@ public class StatusUnitTest {
         when(this.mockDevice.getStatus()).thenThrow(new NullPointerException(this.NODEVICE));
         NullPointerException exception = assertThrows(NullPointerException.class, () -> status.addDevice(mockDevice));
         assertEquals(this.NODEVICE, exception.getMessage());
-        verify(this.mockDevice,times(1)).getStatus();
+        verify(this.mockDevice, times(1)).getStatus();
     }
 
     @Test
     public void testValidation() {
+        status = getStatus();
         var validator = createValidator();
         var status = new Status();
         var constraintViolations = validator.validate(status);
@@ -90,5 +90,9 @@ public class StatusUnitTest {
         for (var violation: constraintViolations) {
             assertEquals("must not be empty", violation.getMessage());
         }
+    }
+
+    private Status getStatus() {
+        return new Status(TestHelper.STATUS_INUSE);
     }
 }
