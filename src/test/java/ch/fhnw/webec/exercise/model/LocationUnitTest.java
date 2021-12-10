@@ -32,6 +32,7 @@ public class LocationUnitTest {
     public void testAddDevice(){
         // given
         mockDevice = mock(Device.class);
+        when(this.mockDevice.getLocation()).thenReturn(null);
         int expectedDeviceListCount = 1;
 
         // then
@@ -46,27 +47,6 @@ public class LocationUnitTest {
         assertEquals(expectedDeviceListCount, location.getDevices().size());
         assertTrue(location.getDevices().contains(mockDevice));
         verify(this.mockDevice, times(2)).getLocation();
-    }
-
-    @ParameterizedTest
-    @ValueSource(ints = {1, 10, 100})
-    public void testAddParameterizedDevices(int mockDeviceCounter){
-        // given
-        location = new Location();
-
-        // then
-        assertEquals(0, location.getDevices().size());
-
-        for (int i = 0; i < mockDeviceCounter; i++){
-            mockDevice = mock(Device.class);
-            assertNull(mockDevice.getLocation());
-            location.addDevice(mockDevice);
-        }
-
-        assertEquals(mockDeviceCounter, location.getDevices().size());
-        assertTrue(location.getDevices().contains(mockDevice));
-
-        verify(this.mockDevice, times(2)).getStatus();
     }
 
     @Test

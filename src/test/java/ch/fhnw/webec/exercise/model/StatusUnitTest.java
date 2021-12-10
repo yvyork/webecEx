@@ -32,6 +32,7 @@ public class StatusUnitTest {
     public void testAddDevice() {
         // given
         mockDevice = mock(Device.class);
+        when(this.mockDevice.getStatus()).thenReturn(null);
         int expectedDeviceListCount = 1;
 
         // then
@@ -44,27 +45,6 @@ public class StatusUnitTest {
         assertEquals(expectedDeviceListCount, status.getDevices().size());
         assertTrue(status.getDevices().contains(mockDevice));
         verify(this.mockDevice,times(2)).getStatus();
-    }
-
-    @ParameterizedTest
-    @ValueSource(ints = {1, 10, 100})
-    public void testAddParameterizedDevices(int mockDeviceCounter) {
-        // given
-        status = new Status();
-
-        // then
-        assertEquals(0, status.getDevices().size());
-
-        for (int i = 0; i < mockDeviceCounter; i++){
-            mockDevice = mock(Device.class);
-            assertNull(mockDevice.getStatus());
-            status.addDevice(mockDevice);
-        }
-
-        assertEquals(mockDeviceCounter, status.getDevices().size());
-        assertTrue(status.getDevices().contains(mockDevice));
-
-        verify(this.mockDevice, times(2)).getStatus();
     }
 
     @Test
