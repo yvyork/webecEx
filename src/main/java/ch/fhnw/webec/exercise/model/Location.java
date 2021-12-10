@@ -4,7 +4,6 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +18,7 @@ public class Location {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int locationId;
+    private int Id;
 
     @NotEmpty
     @Length(min = 1, max = 255)
@@ -50,12 +49,12 @@ public class Location {
         this.zipCity = zipCity;
     }
 
-    public int getLocationId() {
-        return locationId;
+    public int getId() {
+        return Id;
     }
 
-    public void setLocationId(int locationId) {
-        this.locationId = locationId;
+    public void setId(int id) {
+        this.Id = id;
     }
 
     public String getBuildingName() {

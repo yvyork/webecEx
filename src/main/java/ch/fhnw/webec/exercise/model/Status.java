@@ -4,7 +4,6 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +15,7 @@ import java.util.List;
 public class Status {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int statusId;
+    private int id;
 
     @NotEmpty
     @Length(min = 1, max = 255)
@@ -32,12 +31,12 @@ public class Status {
         this.name = name;
     }
 
-    public int getStatusId() {
-        return statusId;
+    public int getId() {
+        return id;
     }
 
-    public void setStatusId(int statusId) {
-        this.statusId = statusId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

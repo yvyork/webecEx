@@ -1,8 +1,8 @@
 {# @pebvariable name="form" type="java.lang.String" #}
 {# @pebvariable name="label" type="java.lang.String" #}
 {# @pebvariable name="name" type="java.lang.String" #}
-{# @pebvariable name="options" type="java.util.Collection<ch.fhnw.webec.booklist.form.SelectOption>" #}
-{# @pebvariable name="selectedOptions" type="java.util.Collection<ch.fhnw.webec.booklist.form.SelectOption>" #}
+{# @pebvariable name="options" type="java.util.Collection<ch.fhnw.webec.exercise.form.SelectOption>" #}
+{# @pebvariable name="selectedOptions" type="java.util.Collection<ch.fhnw.webec.exercise.form.SelectOption>" #}
 {# @pebvariable name="multiple" type="java.lang.Boolean" #}
 
 {% macro select(form, label, name, options, selectedOptions, multiple, _context) %}

@@ -15,9 +15,9 @@
             {% for location in locations %}
                 <div class="location-list__item">
                     <h2 class="location-list__heading heading heading--size-3">
-                        <a href="{{ href('/locations/' + location.locationId) }}" class="link">{{ location.buildingName + " " + location.roomName}}</a>
+                        <a href="{{ href('/locations/' + location.id) }}" class="link">{{ location.buildingName + " " + location.roomName}}</a>
                         <p class="location-list__streetAndNumber">
-                            {{"Location ID: " + location.locationId +
+                            {{"Location ID: " + location.id +
                             ", Streed/Number: " + location.streetAndNumber +
                             ", ZIP/City: " + location.zipCity}}
                         </p>

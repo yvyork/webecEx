@@ -47,7 +47,7 @@ public class StatusController {
             return "status/add-or-edit";
         } else {
             this.statusRepository.save(status);
-            return "redirect:/statuses/";
+            return "redirect:/statuses/" + status.getId();
         }
     }
 
@@ -64,7 +64,7 @@ public class StatusController {
             return "status/add-or-edit";
         } else {
             this.statusRepository.save(status);
-            return "redirect:/statuses/";
+            return "redirect:/statuses/" + status.getId();
         }
     }
 

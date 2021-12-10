@@ -1,4 +1,4 @@
-{# @pebvariable name="statuses" type="java.util.List<ch.fhnw.webec.exercise.model.Status>" #}
+{# @pebvariable name="status" type="ch.fhnw.webec.exercise.model.Status" #}
 {# @pebvariable name="search" type="java.lang.String" #}
 
 {% extends "layout/default" %}

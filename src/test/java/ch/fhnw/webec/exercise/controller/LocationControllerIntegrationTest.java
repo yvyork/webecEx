@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.Optional;
 
 import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -62,67 +63,81 @@ public class LocationControllerIntegrationTest {
     //TODO: search functionality is not yet implemented
     public void testSearch() throws Exception {
         // given
-        var search = "flügel";
+        var search = "dfl";
 
         // then
-        this.mockMvc.perform(get("?search={search}", search))
-            .andExpect(status().isOk())
-            .andExpect(content().string(containsString(search)));
+        this.mockMvc.perform(get("/locations/?search={search}", search))
+            .andExpect(status().isOk());
+            //.andExpect(content().string(containsString(search)));
 
         verify(this.locationRepository, times(1)).findBySearch(search);
         verify(this.locationRepository, never()).findAll();
     }
 
     @Test
+    public void testSearchNotFound() throws Exception {
+        // given
+        var search = "no location";
+
+        // then
+        assertThrows(AssertionError.class, () ->
+                this.mockMvc.perform(get("/locations/?search={search}", search))
+                        .andExpect(status().isOk())
+                        .andExpect(content().string(containsString(search))));
+
+        verify(this.locationRepository, times(1)).findBySearch(search);
+    }
+
+    @Test
     public void testShowLocation() throws Exception {
         // given
-        var locationId = 1;
+        var id = 1;
         var location = new Location("Nordflügel","EG01","Musterstrasse 1", "3000 Bern");
 
         // when
-        when(this.locationRepository.findById(locationId)).thenReturn(Optional.of(location));
+        when(this.locationRepository.findById(id)).thenReturn(Optional.of(location));
 
         // then
-        this.mockMvc.perform(get("/locations/{id}/", locationId))
+        this.mockMvc.perform(get("/locations/{id}/", id))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("Nordflügel")))
                 .andExpect(content().string(containsString("Musterstrasse 1")));
 
-        verify(this.locationRepository, times(1)).findById(locationId);
+        verify(this.locationRepository, times(1)).findById(id);
     }
 
     @Test
     public void testAddOrEditLocation() throws Exception {
         // given
-        var locationId = 1;
+        var id = 1;
         var location = new Location("Nordflügel","EG01","Musterstrasse 1", "3000 Bern");
 
         // when
-        when(this.locationRepository.findById(locationId)).thenReturn(Optional.of(location));
+        when(this.locationRepository.findById(id)).thenReturn(Optional.of(location));
 
         // then
-        this.mockMvc.perform(get("/locations/{id}/edit?", locationId))
+        this.mockMvc.perform(get("/locations/{id}/edit?", id))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("Nordflügel")))
                 .andExpect(content().string(containsString("Musterstrasse 1")));
 
-        verify(this.locationRepository, times(1)).findById(locationId);
+        verify(this.locationRepository, times(1)).findById(id);
     }
 
     @Test
     public void testDeleteLocation() throws Exception {
         // given
-        var locationId = 1;
+        var id = 1;
         var location = new Location("Nordflügel","EG01","Musterstrasse 1", "3000 Bern");
 
         // when
-        when(this.locationRepository.findById(locationId)).thenReturn(Optional.of(location));
+        when(this.locationRepository.findById(id)).thenReturn(Optional.of(location));
 
         // then
-        this.mockMvc.perform(post("/locations/{id}/delete", locationId))
+        this.mockMvc.perform(post("/locations/{id}/delete", id))
                 .andExpect(status().is3xxRedirection());
 
-        verify(this.locationRepository, times(1)).findById(locationId);
+        verify(this.locationRepository, times(1)).findById(id);
         verify(this.locationRepository, times(1)).delete(location);
     }
 }

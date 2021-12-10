@@ -16,10 +16,10 @@
     <p class="location-detail__zipCity">{{ "ZIP/City: " + location.zipCity }}</p>
 
     <div class="location-detail__buttons">
-        <form action="{{ href('/locations/' + location.locationId + '/edit') }}" method="get" class="location-detail__edit-form">
+        <form action="{{ href('/locations/' + location.id + '/edit') }}" method="get" class="location-detail__edit-form">
             <input type="submit" value="Edit" class="button">
         </form>
-        <form action="{{ href('/locations/' + location.locationId + '/delete') }}" method="post" class="location-detail__delete-form">
+        <form action="{{ href('/locations/' + location.id + '/delete') }}" method="post" class="location-detail__delete-form">
             <input type="submit" value="Delete" class="button">
         </form>
         <form action="{{ href('/locations/') }}" method="get" class="location-detail__back-form">
