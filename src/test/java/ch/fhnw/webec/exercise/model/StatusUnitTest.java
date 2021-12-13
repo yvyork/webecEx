@@ -2,19 +2,18 @@ package ch.fhnw.webec.exercise.model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import javax.validation.Validator;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 public class StatusUnitTest {
 
+    public final String NODEVICE = "There is no device to add";
+    private Device mockDevice;
     private Status status;
-    private Device device;
-
 
     private Validator createValidator() {
         LocalValidatorFactoryBean localValidatorFactoryBean = new LocalValidatorFactoryBean();
@@ -27,80 +26,40 @@ public class StatusUnitTest {
         status = new Status();
     }
 
-    private void createIPad(int counter) {
-        device = new Device();
-        device.setSerialNumber(TestHelper.IPAD_SERIALNUMBER.concat(String.valueOf(counter)));
-        device.setManufacturer(TestHelper.IPAD_MANUFACTURER);
-        device.setModel(TestHelper.IPAD_MODEL);
-        device.setDisplaySize(TestHelper.IPAD_DISPLAYSIZE);
-        device.setProcessor(TestHelper.IPAD_PROCESSOR);
-        device.setMemory(TestHelper.IPAD_MEMORY);
-    }
-
     @Test
     public void testAddDevice() {
         // given
-        device = new Device();
+        mockDevice = mock(Device.class);
+        when(this.mockDevice.getStatus()).thenReturn(null);
         int expectedDeviceListCount = 1;
 
-        // when
-        assertEquals(0, status.getDevices().size());
-        assertNull(device.getStatus());
-        status.addDevice(device);
-
         // then
+        assertEquals(0, status.getDevices().size());
+        assertNull(mockDevice.getStatus());
+
+        when(this.mockDevice.getStatus()).thenReturn(new Status("new"));
+        status.addDevice(mockDevice);
+
         assertEquals(expectedDeviceListCount, status.getDevices().size());
-        assertTrue(status.getDevices().contains(device));
-        assertEquals(status, device.getStatus());
-    }
-
-    @ParameterizedTest
-    @ValueSource(ints = {1, 10, 100})
-    public void testAddIpad(int deviceCounter) {
-        status = new Status();
-
-        assertEquals(0, status.getDevices().size());
-
-        for (int i = 0; i < deviceCounter; i++){
-            // given
-            createIPad(i + 1);
-            // when
-            assertNull(device.getStatus());
-            status.addDevice(device);
-        }
-
-        // then
-        assertEquals(deviceCounter, status.getDevices().size());
-        assertTrue(status.getDevices().contains(device));
-        assertEquals(status, device.getStatus());
-
-        for (int i = 0; i < deviceCounter; i++){
-            assertEquals(TestHelper.IPAD_SERIALNUMBER.concat(String.valueOf(i + 1)),
-                    status.getDevices().get(i).getSerialNumber());
-        }
-
-        assertEquals(TestHelper.IPAD_MANUFACTURER, status.getDevices().get(0).getManufacturer());
-        assertEquals(TestHelper.IPAD_MODEL, status.getDevices().get(0).getModel());
-        assertEquals(TestHelper.IPAD_DISPLAYSIZE, status.getDevices().get(0).getDisplaySize());
-        assertEquals(TestHelper.IPAD_PROCESSOR, status.getDevices().get(0).getProcessor());
-        assertEquals(TestHelper.IPAD_MEMORY, status.getDevices().get(0).getMemory());
+        assertTrue(status.getDevices().contains(mockDevice));
+        verify(this.mockDevice,times(2)).getStatus();
     }
 
     @Test
-    public void testAddNullStatus() {
+    public void testAddNullDevice() {
         // given
-
-        // when
-
+        mockDevice = mock(Device.class);
         // then
-        NullPointerException exception = assertThrows(NullPointerException.class, () -> status.addDevice(device));
-        assertEquals(Location.NULLDEVICE, exception.getMessage());
         assertEquals(0, status.getDevices().size());
-        assertThrows(NullPointerException.class, () -> device.getStatus());
+        when(this.mockDevice.getStatus()).thenThrow(new NullPointerException(this.NODEVICE));
+        NullPointerException exception = assertThrows(NullPointerException.class, () -> status.addDevice(mockDevice));
+        assertEquals(this.NODEVICE, exception.getMessage());
+        verify(this.mockDevice, times(1)).getStatus();
     }
 
     @Test
     public void testValidation() {
+        status = getStatus();
         var validator = createValidator();
         var status = new Status();
         var constraintViolations = validator.validate(status);
@@ -111,4 +70,7 @@ public class StatusUnitTest {
         }
     }
 
+    private Status getStatus() {
+        return new Status(TestHelper.STATUS_INUSE);
+    }
 }

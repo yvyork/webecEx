@@ -1,0 +1,18 @@
+{# @pebvariable name="locations" type="java.util.List<ch.fhnw.webec.exercise.model.Location>" #}
+{# @pebvariable name="search" type="java.lang.String" #}
+
+{% extends "layout/default" %}
+
+    {% import "form/input" %}
+    {% import "form/select" %}
+    {% import "form/submit" %}
+
+{% block content %}
+    <form method="post" class="form">
+        {{ input("location", "Building Name", "buildingName", "text", location.buildingName, _context) }}
+        {{ input("location", "Room Name", "roomName", "text", location.roomName, _context) }}
+        {{ input("location", "Street and Number", "streetAndNumber", "text", location.streetAndNumber, _context) }}
+        {{ input("location", "Zip and City", "zipCity", "text", location.zipCity, _context) }}
+        {{ submit("Save") }}
+    </form>
+{% endblock %}

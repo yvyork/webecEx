@@ -1,0 +1,15 @@
+{# @pebvariable name="status" type="ch.fhnw.webec.exercise.model.Status" #}
+{# @pebvariable name="search" type="java.lang.String" #}
+
+{% extends "layout/default" %}
+
+    {% import "form/input" %}
+    {% import "form/select" %}
+    {% import "form/submit" %}
+
+{% block content %}
+    <form method="post" class="form">
+        {{ input("status", "Name", "name", "text", status.name, _context) }}
+        {{ submit("Save") }}
+    </form>
+{% endblock %}

@@ -9,12 +9,13 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import javax.validation.Validator;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 public class LocationUnitTest {
 
+    public final String NODEVICE = "There is no device to add";
+    private Device mockDevice;
     private Location location;
-    private Device device;
-
 
     private Validator createValidator() {
         LocalValidatorFactoryBean localValidatorFactoryBean = new LocalValidatorFactoryBean();
@@ -27,80 +28,42 @@ public class LocationUnitTest {
         location = new Location();
     }
 
-    private void createIPad(int counter) {
-        device = new Device();
-        device.setSerialNumber(TestHelper.IPAD_SERIALNUMBER.concat(String.valueOf(counter)));
-        device.setManufacturer(TestHelper.IPAD_MANUFACTURER);
-        device.setModel(TestHelper.IPAD_MODEL);
-        device.setDisplaySize(TestHelper.IPAD_DISPLAYSIZE);
-        device.setProcessor(TestHelper.IPAD_PROCESSOR);
-        device.setMemory(TestHelper.IPAD_MEMORY);
-    }
-
     @Test
     public void testAddDevice(){
         // given
-        device = new Device();
+        mockDevice = mock(Device.class);
+        when(this.mockDevice.getLocation()).thenReturn(null);
         int expectedDeviceListCount = 1;
 
-        // when
-        assertEquals(0, location.getDevices().size());
-        assertNull(device.getLocation());
-        location.addDevice(device);
-
         // then
+        assertEquals(0, location.getDevices().size());
+        assertNull(mockDevice.getLocation());
+
+        when(this.mockDevice.getLocation()).thenReturn(
+                new Location("Nordflügel","EG01",
+                "Musterstrasse 1", "3000 Bern"));
+        location.addDevice(mockDevice);
+
         assertEquals(expectedDeviceListCount, location.getDevices().size());
-        assertTrue(location.getDevices().contains(device));
-        assertEquals(location, device.getLocation());
-    }
-
-    @ParameterizedTest
-    @ValueSource(ints = {1, 10, 100})
-    public void testAddIpad(int deviceCounter){
-        location = new Location();
-
-        assertEquals(0, location.getDevices().size());
-
-        for (int i = 0; i < deviceCounter; i++){
-            // given
-            createIPad(i + 1);
-            // when
-            assertNull(device.getLocation());
-            location.addDevice(device);
-        }
-
-        // then
-        assertEquals(deviceCounter, location.getDevices().size());
-        assertTrue(location.getDevices().contains(device));
-        assertEquals(location, device.getLocation());
-
-        for (int i = 0; i < deviceCounter; i++){
-            assertEquals(TestHelper.IPAD_SERIALNUMBER.concat(String.valueOf(i + 1)),
-                           location.getDevices().get(i).getSerialNumber());
-        }
-
-        assertEquals(TestHelper.IPAD_MANUFACTURER, location.getDevices().get(0).getManufacturer());
-        assertEquals(TestHelper.IPAD_MODEL, location.getDevices().get(0).getModel());
-        assertEquals(TestHelper.IPAD_DISPLAYSIZE, location.getDevices().get(0).getDisplaySize());
-        assertEquals(TestHelper.IPAD_PROCESSOR, location.getDevices().get(0).getProcessor());
-        assertEquals(TestHelper.IPAD_MEMORY, location.getDevices().get(0).getMemory());
+        assertTrue(location.getDevices().contains(mockDevice));
+        verify(this.mockDevice, times(2)).getLocation();
     }
 
     @Test
     public void testAddNullDevice() {
         // given
-        // when
+        mockDevice = mock(Device.class);
         // then
-        NullPointerException exception = assertThrows(NullPointerException.class, () -> location.addDevice(device));
-        assertEquals(Location.NULLDEVICE, exception.getMessage());
         assertEquals(0, location.getDevices().size());
-        assertThrows(NullPointerException.class, () -> device.getLocation());
+        when(this.mockDevice.getLocation()).thenThrow(new NullPointerException(this.NODEVICE));
+        NullPointerException exception = assertThrows(NullPointerException.class, () -> location.addDevice(mockDevice));
+        assertEquals(this.NODEVICE, exception.getMessage());
+        verify(this.mockDevice, times(1)).getLocation();
     }
 
     @Test
     public void testValidation() {
-        Location location = getLocation();
-
+        location = getLocation();
         var validator = createValidator();
         var constraintViolations = validator.validate(location);
         assertEquals(0, constraintViolations.size());
@@ -115,12 +78,8 @@ public class LocationUnitTest {
     }
 
     private Location getLocation() {
-        var location = new Location();
-        location.setStreetAndNumber(TestHelper.LOCATION_STREET);
-        location.setRoomName(TestHelper.LOCATION_ROOMNAME);
-        location.setBuildingName(TestHelper.LOCATION_BUILDINGNAME);
-        location.setZipCity(TestHelper.LOCATION_ZIP);
-        return location;
+        return new Location(TestHelper.LOCATION_BUILDINGNAME, TestHelper.LOCATION_ROOMNAME,
+                TestHelper.LOCATION_STREET, TestHelper.LOCATION_ZIP);
     }
 }
 

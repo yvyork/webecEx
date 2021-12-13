@@ -1,0 +1,31 @@
+{# @pebvariable name="statuses" type="java.util.List<ch.fhnw.webec.exercise.model.Status>" #}
+{# @pebvariable name="search" type="java.lang.String" #}
+
+{% extends "layout/default" %}
+
+{% block content %}
+    <h1 class="heading heading--size-1">List of Status</h1>
+
+    {% if search is not empty %}
+        <p>Results for: "{{ search }}"</p>
+    {% endif %}
+
+    <div class="status-list">
+        <div class="status-list__items">
+            {% for status in statuses %}
+                <div class="status-list__item">
+                    <h2 class="status-list__heading heading heading--size-3">
+                        <a href="{{ href('/statuses/' + status.id) }}" class="link">{{ status.Name}}</a>
+                        <p class="status-list__name">
+                            {{"Status ID: " + status.id +
+                            ", Name: " + status.name }}
+                        </p>
+                    </h2>
+                </div>
+            {% endfor %}
+        </div>
+        <form action="{{ href('/statuses/add') }}" method="get" class="status-list__add-button">
+            <input type="submit" value="Add new Status" class="button">
+        </form>
+    </div>
+{% endblock %}
