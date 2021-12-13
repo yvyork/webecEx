@@ -12,7 +12,7 @@ public class Device {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int deviceId;
+    private int Id;
 
     @NotEmpty
     private String serialNumber;
@@ -43,12 +43,12 @@ public class Device {
 
     public Device() {}
 
-    public int getDeviceId() {
-        return deviceId;
+    public int getId() {
+        return Id;
     }
 
-    public void setDeviceId(int deviceId) {
-        this.deviceId = deviceId;
+    public void setId(int Id) {
+        this.Id = Id;
     }
 
     public String getSerialNumber() {

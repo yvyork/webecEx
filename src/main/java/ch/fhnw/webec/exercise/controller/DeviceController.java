@@ -3,6 +3,7 @@ package ch.fhnw.webec.exercise.controller;
 import ch.fhnw.webec.exercise.model.Device;
 import ch.fhnw.webec.exercise.repository.DeviceRepository;
 import ch.fhnw.webec.exercise.repository.LocationRepository;
+import ch.fhnw.webec.exercise.repository.StatusRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,10 +21,14 @@ import java.util.Optional;
 public class DeviceController {
     private final DeviceRepository deviceRepository;
     private final LocationRepository locationRepository;
+    private final StatusRepository statusRepository;
 
-    public DeviceController(DeviceRepository deviceRepository, LocationRepository locationRepository) {
+    public DeviceController(DeviceRepository deviceRepository,
+                            LocationRepository locationRepository,
+                            StatusRepository statusRepository) {
         this.deviceRepository = deviceRepository;
         this.locationRepository = locationRepository;
+        this.statusRepository = statusRepository;
 
     }
 
@@ -46,6 +51,7 @@ public class DeviceController {
     @RequestMapping(path = "/devices/add", method = RequestMethod.GET)
     public String addDevice(Model model) {
         model.addAttribute("locations", this.locationRepository.findAll());
+        model.addAttribute("statuses", this.statusRepository.findAll());
 
         return "device/add-or-edit"; }
 
@@ -53,6 +59,7 @@ public class DeviceController {
     public String addDevice(@Valid Device device, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("locations", this.locationRepository.findAll());
+            model.addAttribute("statuses", this.statusRepository.findAll());
             model.addAttribute("device", device);
             return "device/add-or-edit";
         } else {
@@ -63,7 +70,8 @@ public class DeviceController {
 
     @RequestMapping(path = "/devices/{id}/edit", method = RequestMethod.GET)
     public String editDevice(@PathVariable int id, Model model) {
-        //model.addAttribute("location", this.deviceRepository.findAll());
+        model.addAttribute("location", this.locationRepository.findAll());
+        model.addAttribute("statuses", this.statusRepository.findAll());
         model.addAttribute("device", this.deviceRepository.findById(id).orElseThrow( () ->
                 new ResponseStatusException(HttpStatus.NOT_FOUND)));
 
@@ -73,14 +81,15 @@ public class DeviceController {
     @RequestMapping(path = "/devices/{id}/edit", method = RequestMethod.POST)
     public String editDevice(@Valid Device device, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            //model.addAttribute("location", this.locationRepository.findAll());
+            model.addAttribute("location", this.locationRepository.findAll());
+            model.addAttribute("statuses", this.statusRepository.findAll());
             model.addAttribute("device", device);
 
             return "device/add-or-edit";
         } else {
             this.deviceRepository.save(device);
 
-            return "redirect:/devices/" + device.getDeviceId();
+            return "redirect:/devices/" + device.getId();
         }
     }
 

@@ -15,7 +15,7 @@
             {% for device in devices %}
                 <div class="device-list__item">
                     <h2 class="device-list__heading heading heading--size-3">
-                        <a href="{{ href('/devices/' + device.deviceId) }}" class="link">{{ device.model + " " + device.manufacturer}}</a>
+                        <a href="{{ href('/devices/' + device.Id) }}" class="link">{{ device.model + " " + device.manufacturer}}</a>
                         <p class="device-list__deviceInformation">
                             {{"Serialnumber: " + device.serialNumber +
                             ", Display size: " + device.displaySize +
