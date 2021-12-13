@@ -1,5 +1,6 @@
 {# @pebvariable name="location" type="ch.fhnw.webec.exercise.model.Location" #}
 
+
 {% extends "layout/default" %}
 
 {% import "form/input" %}

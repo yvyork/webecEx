@@ -1,5 +1,6 @@
 package ch.fhnw.webec.exercise.model;
 
+import ch.fhnw.webec.exercise.form.SelectOption;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -12,7 +13,7 @@ import java.util.List;
  * it has a one to many relation to devices
  */
 @Entity
-public class Location {
+public class Location implements SelectOption {
 
     public static final String NULLDEVICE = "There is no device to add";
 
@@ -108,5 +109,15 @@ public class Location {
         } else {
             throw new NullPointerException(NULLDEVICE);
         }
+    }
+
+    @Override
+    public String getValue() {
+        return String.valueOf(this.getId());
+    }
+
+    @Override
+    public String getLabel() {
+        return getBuildingName() + " " + getRoomName();
     }
 }

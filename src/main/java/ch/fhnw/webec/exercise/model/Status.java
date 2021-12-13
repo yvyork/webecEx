@@ -1,5 +1,6 @@
 package ch.fhnw.webec.exercise.model;
 
+import ch.fhnw.webec.exercise.form.SelectOption;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -12,7 +13,8 @@ import java.util.List;
  * it has a one to many relation to devices
  */
 @Entity
-public class Status {
+public class Status implements SelectOption {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -65,5 +67,15 @@ public class Status {
             throw new NullPointerException(Location.NULLDEVICE);
         }
 
+    }
+
+    @Override
+    public String getValue() {
+        return String.valueOf(this.getId());
+    }
+
+    @Override
+    public String getLabel() {
+        return getName();
     }
 }
