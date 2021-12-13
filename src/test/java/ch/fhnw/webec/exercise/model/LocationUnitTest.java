@@ -62,6 +62,25 @@ public class LocationUnitTest {
     }
 
     @Test
+    public void testGetValue() {
+        // given
+        // when
+        location.setId(0);
+        // then
+        assertEquals("0", location.getValue());
+    }
+
+    @Test
+    public void testGetLasbel() {
+        // given
+        // when
+        location.setBuildingName("Nordflügel");
+        location.setRoomName("EG01");
+        // then
+        assertEquals("Nordflügel EG01", location.getLabel());
+    }
+
+    @Test
     public void testValidation() {
         location = getLocation();
         var validator = createValidator();

@@ -58,6 +58,24 @@ public class StatusUnitTest {
     }
 
     @Test
+    public void testGetValue() {
+        // given
+        // when
+        status.setId(0);
+        // then
+        assertEquals("0", status.getValue());
+    }
+
+    @Test
+    public void testGetLabel() {
+        // given
+        // when
+        status.setName("new");
+        // then
+        assertEquals("new", status.getLabel());
+    }
+
+    @Test
     public void testValidation() {
         status = getStatus();
         var validator = createValidator();
