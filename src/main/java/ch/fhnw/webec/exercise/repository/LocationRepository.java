@@ -14,8 +14,8 @@ public interface LocationRepository extends JpaRepository<Location, Integer> {
           FROM Location location
          WHERE LOWER(location.buildingName) LIKE LOWER(CONCAT('%', :search, '%'))
             OR LOWER(location.roomName) LIKE LOWER(CONCAT('%', :search, '%'))
-            OR LOWER(location.streetAndNumber) LIKE LOWER(CONCAT('%',:search,'%'))
-            OR LOWER(location.zipCity) LIKE LOWER(CONCAT('%',:search,'%'))
+            OR LOWER(location.streetAndNumber) LIKE LOWER(CONCAT('%', :search, '%'))
+            OR LOWER(location.zipCity) LIKE LOWER(CONCAT('%', :search, '%'))
     """)
     List<Location> findBySearch(@Param("search") String search);
 }

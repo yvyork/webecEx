@@ -15,9 +15,9 @@
             {% for status in statuses %}
                 <div class="status-list__item">
                     <h2 class="status-list__heading heading heading--size-3">
-                        <a href="{{ href('/statuses/' + status.statusId) }}" class="link">{{ status.Name}}</a>
+                        <a href="{{ href('/statuses/' + status.id) }}" class="link">{{ status.Name}}</a>
                         <p class="status-list__name">
-                            {{"Status ID: " + status.statusId +
+                            {{"Status ID: " + status.id +
                             ", Name: " + status.name }}
                         </p>
                     </h2>

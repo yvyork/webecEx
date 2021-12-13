@@ -10,14 +10,14 @@
 
 {% block content %}
 <section class="status-detail">
-    <h1 class="heading heading--size-1">{{ "Status ID: " + status.statusId}}</h1>
+    <h1 class="heading heading--size-1">{{ "Status ID: " + status.id}}</h1>
     <p class="status-detail_name">{{ "Status Name: " + status.name}}</p>
 
     <div class="status-detail__buttons">
-        <form action="{{ href('/statuses/' + status.statusId + '/edit') }}" method="get" class="status-detail__edit-form">
+        <form action="{{ href('/statuses/' + status.id + '/edit') }}" method="get" class="status-detail__edit-form">
             <input type="submit" value="Edit" class="button">
         </form>
-        <form action="{{ href('/statuses/' + status.statusId + '/delete') }}" method="post" class="status-detail__delete-form">
+        <form action="{{ href('/statuses/' + status.id + '/delete') }}" method="post" class="status-detail__delete-form">
             <input type="submit" value="Delete" class="button">
         </form>
         <form action="{{ href('/statuses/') }}" method="get" class="status-detail__back-form">

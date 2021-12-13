@@ -1,4 +1,4 @@
-{# @pebvariable name="statuses" type="java.util.List<ch.fhnw.webec.exercise.model.Status>" #}
+{# @pebvariable name="status" type="ch.fhnw.webec.exercise.model.Status" #}
 {# @pebvariable name="search" type="java.lang.String" #}
 
 {% extends "layout/default" %}
@@ -9,7 +9,6 @@
 
 {% block content %}
     <form method="post" class="form">
-        {{ input("status", "Status Id", "statusId", "text", status.statusId, _context) }}
         {{ input("status", "Name", "name", "text", status.name, _context) }}
         {{ submit("Save") }}
     </form>

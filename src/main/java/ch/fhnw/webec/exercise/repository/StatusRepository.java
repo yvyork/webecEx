@@ -11,8 +11,8 @@ public interface StatusRepository extends JpaRepository<Status, Integer> {
 
     @Query("""
         SELECT status
-        FROM Status status
-        WHERE LOWER(status.name) LIKE LOWER(CONCAT('%', :search, '%'))
+          FROM Status status
+         WHERE LOWER(status.name) LIKE LOWER(CONCAT('%', :search, '%'))
     """)
     List<Status> findBySearch(@Param("search") String search);
 }
