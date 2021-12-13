@@ -15,6 +15,10 @@
         {{ input("device", "Display Size", "displaySize", "text", device.displaySize, _context) }}
         {{ input("device", "Processor", "processor", "text", device.processor, _context) }}
         {{ input("device", "Purchase Date", "purchaseDate", "text", device.purchaseDate, _context) }}
+
+        {{ select("device", "Location", "location", location, device.location, true, _context) }}
+        {{ select("device", "Status", "status", status, device.status, true, _context) }}
+
         {{ submit("Save") }}
     </form>
 
