@@ -10,5 +10,8 @@
     </head>
     <body>
         <h1>{{ title }}</h1>
+        <p><a href="{{ href('/devices/') }}" class="link">List of Devices</a></p>
+        <p><a href="{{ href('/locations/') }}" class="link">List of Locations</a></p>
+        <p><a href="{{ href('/statuses/') }}" class="link">List of Status</a></p>
     </body>
 </html>
