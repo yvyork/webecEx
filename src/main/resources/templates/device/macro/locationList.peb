@@ -1,0 +1,9 @@
+{# @pebvariable name"locations" type="java.util.List<ch.fhnw.webec.exercise.model.Location #}
+
+{% macro locationList(locations) %}
+    <div class="location-list">
+        {% for location in locations %}
+            <span class="location-list__item">{{ location.toString() }}</span>
+        {% endfor %}
+    </div>
+{% endmacro %}

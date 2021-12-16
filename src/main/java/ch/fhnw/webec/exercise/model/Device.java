@@ -27,7 +27,7 @@ public class Device {
     private String processor;
 
     @NotEmpty
-    private LocalDate purchaseDate;
+    private String purchaseDate;
 
     @NotEmpty
     private String memory;
@@ -83,11 +83,11 @@ public class Device {
         this.processor = processor;
     }
 
-    public LocalDate getPurchaseDate() {
+    public String getPurchaseDate() {
         return purchaseDate;
     }
 
-    public void setPurchaseDate(LocalDate purchaseDate) {
+    public void setPurchaseDate(String purchaseDate) {
         this.purchaseDate = purchaseDate;
     }
 
