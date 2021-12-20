@@ -14,11 +14,11 @@ import static org.junit.jupiter.api.Assertions.*;
 @DataJpaTest
 public class StatusRepositoryIntegrationTest {
 
-    @Autowired
-    private DeviceRepository deviceRepository;
+    //@Autowired
+    //private DeviceRepository deviceRepository;
 
-    @Autowired
-    private LocationRepository locationRepository;
+    //@Autowired
+    //private LocationRepository locationRepository;
 
     @Autowired
     private StatusRepository statusRepository;
@@ -49,9 +49,7 @@ public class StatusRepositoryIntegrationTest {
     @Test
     public void testSavedInvalidStatus() {
         // then
-        assertThrows(ConstraintViolationException.class, () -> {
-            this.statusRepository.save(new Status(""));
-        });
+        assertThrows(ConstraintViolationException.class, () -> this.statusRepository.save(new Status("")));
     }
 
     @Test
@@ -62,7 +60,6 @@ public class StatusRepositoryIntegrationTest {
         // when
         status.setName("new device");
         var savedStatus = this.statusRepository.save(status);
-
         // then
         assertEquals(4, this.statusRepository.findAll().size());
         assertEquals("new device", savedStatus.getName());
