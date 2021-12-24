@@ -3,6 +3,7 @@ package ch.fhnw.webec.exercise.repository;
 import ch.fhnw.webec.exercise.model.Location;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
 
@@ -12,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @ActiveProfiles("test")
 @DataJpaTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class LocationRepositoryIntegrationTest {
     //@Autowired
     //private DeviceRepository deviceRepository;
@@ -30,7 +32,7 @@ public class LocationRepositoryIntegrationTest {
         var firstLocation = locations.get(0);
         // then
         assertEquals(4, locations.size());
-        assertEquals("NordflÃ¼gel", firstLocation.getBuildingName());
+        assertEquals("Nordflügel", firstLocation.getBuildingName());
     }
 
     @Test
@@ -55,8 +57,8 @@ public class LocationRepositoryIntegrationTest {
     public void testUpdateLocation() {
         // given
         var location = this.locationRepository.findById(1).get();
-        //assertEquals("Nordflügel", location.getBuildingName());
-        assertEquals("NordflÃ¼gel", location.getBuildingName());
+        assertEquals("Nordflügel", location.getBuildingName());
+        //assertEquals("NordflÃ¼gel", location.getBuildingName());
         // when
         location.setBuildingName("Nordostflügel");
         location.setRoomName("EG02");

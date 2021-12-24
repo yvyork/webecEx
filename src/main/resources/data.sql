@@ -1,11 +1,11 @@
 INSERT IGNORE INTO Location (building_name, room_name, street_and_number, zip_city)
-VALUES ('NordflÃ¼gel','EG01','Musterstrasse 1', '3000 Bern');
+VALUES ('Nordflügel','EG01','Musterstrasse 1', '3000 Bern');
 INSERT IGNORE INTO Location (building_name, room_name, street_and_number, zip_city)
-VALUES('OstflÃ¼gel','EG01','Musterstrasse 1', '3000 Bern');
+VALUES('Ostflügel','EG01','Musterstrasse 1', '3000 Bern');
 INSERT IGNORE INTO Location (building_name, room_name, street_and_number, zip_city)
-VALUES('SÃ¼dflÃ¼gel','EG01','Musterstrasse 2', '3000 Bern');
+VALUES('Südflügel','EG01','Musterstrasse 2', '3000 Bern');
 INSERT IGNORE INTO Location (building_name, room_name, street_and_number, zip_city)
-VALUES('WestflÃ¼gel','EG01','Musterstrasse 2', '3000 Bern');
+VALUES('Westflügel','EG01','Musterstrasse 2', '3000 Bern');
 
 INSERT IGNORE INTO Status (name)
 VALUES('new');
