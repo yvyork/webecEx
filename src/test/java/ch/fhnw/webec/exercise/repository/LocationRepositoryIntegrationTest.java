@@ -15,14 +15,9 @@ import static org.junit.jupiter.api.Assertions.*;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class LocationRepositoryIntegrationTest {
-    //@Autowired
-    //private DeviceRepository deviceRepository;
 
     @Autowired
     private LocationRepository locationRepository;
-
-    //@Autowired
-    //private StatusRepository statusRepository;
 
     @Test
     public void testFindAll() {
@@ -58,7 +53,6 @@ public class LocationRepositoryIntegrationTest {
         // given
         var location = this.locationRepository.findById(1).get();
         assertEquals("Nordflügel", location.getBuildingName());
-        //assertEquals("NordflÃ¼gel", location.getBuildingName());
         // when
         location.setBuildingName("Nordostflügel");
         location.setRoomName("EG02");

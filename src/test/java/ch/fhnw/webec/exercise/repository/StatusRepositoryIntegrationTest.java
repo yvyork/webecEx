@@ -16,12 +16,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class StatusRepositoryIntegrationTest {
 
-    //@Autowired
-    //private DeviceRepository deviceRepository;
-
-    //@Autowired
-    //private LocationRepository locationRepository;
-
     @Autowired
     private StatusRepository statusRepository;
 
