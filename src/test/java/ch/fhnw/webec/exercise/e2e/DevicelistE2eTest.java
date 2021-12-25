@@ -58,10 +58,10 @@ public class DevicelistE2eTest {
     public void testShowDevice() {
         var showDevicePage = this.indexPage.goToShowDevicePage(1);
 
-        assertEquals("Test book 1", showDevicePage.getHeading());
-        assertEquals("Test book 1 description", showBookPage.getDescription());
-        assertTrue(showBookPage.getTopicNames().contains("test topic 1"));
-        assertTrue(showBookPage.getTopicNames().contains("test topic 2"));
+        assertEquals("Apple MacBook Air", showDevicePage.getHeading());
+        assertEquals("Test book 1 description", showDevicePage.getDescription());
+        assertTrue(showDevicePage.getLocationNames().contains("Nordflügel"));
+        assertTrue(showDevicePage.getLocationNames().contains("Ostflügel"));
     }
 
 }
