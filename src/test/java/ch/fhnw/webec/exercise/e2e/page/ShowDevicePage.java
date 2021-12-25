@@ -70,11 +70,11 @@ public class ShowDevicePage extends AbstractPage {
         return this.submitForm();
     }
 
-    public void setStatus(String Status) {
-        var ratingSelect = new Select(this.ratingInputElement);
-
-        ratingSelect.selectByValue("" + rating);
-    }
+//    public void setStatus(String Status) {
+//        var ratingSelect = new Select(this.ratingInputElement);
+//
+//        ratingSelect.selectByValue("" + rating);
+//    }
 
     public void setLocation(String comment) {
         this.commentInputElement.clear();
