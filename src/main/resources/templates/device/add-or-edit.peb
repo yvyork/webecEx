@@ -9,7 +9,6 @@
 
 {% block content %}
     <form method="post" class="form">
-        {#{{ input("device", "Device Id", "Id", "text", device.Id, _context) }}#}
         {{ input("device", "Serial Number", "serialNumber", "text", device.serialNumber, _context) }}
         {{ input("device", "Model", "model", "text", device.model, _context) }}
         {{ input("device", "Arbeitsspeicher", "memory", "text", device.memory, _context) }}

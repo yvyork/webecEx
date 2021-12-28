@@ -16,7 +16,7 @@ public class TestHelper {
     public static final String MACBOOK_MODEL = "MacBook Pro";
     public static final String MACBOOK_DISPLAYSIZE = "13\"";
     public static final String MACBOOK_PROCESSOR = "2.3 GHz Quad-Core Intel Core i7";
-    public static final LocalDate MACBOOK_PURCHASEDATE = LocalDate.now();
+    //public static final String MACBOOK_PURCHASEDATE = LocalDate.now();
     public static final String MACBOOK_MEMORY = "16 GB";
     public static final String MACBOOK_MANUFACTURER = "Apple";
 

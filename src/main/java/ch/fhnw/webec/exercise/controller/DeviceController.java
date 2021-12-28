@@ -50,15 +50,14 @@ public class DeviceController {
 
     @RequestMapping(path = "/devices/add", method = RequestMethod.GET)
     public String addDevice(Model model) {
-        model.addAttribute("locations", this.locationRepository.findAll());
+        model.addAttribute("location", this.locationRepository.findAll());
         model.addAttribute("statuses", this.statusRepository.findAll());
-
         return "device/add-or-edit"; }
 
     @RequestMapping(path = "/devices/add", method = RequestMethod.POST)
     public String addDevice(@Valid Device device, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("locations", this.locationRepository.findAll());
+            model.addAttribute("location", this.locationRepository.findAll());
             model.addAttribute("statuses", this.statusRepository.findAll());
             model.addAttribute("device", device);
             return "device/add-or-edit";
