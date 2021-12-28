@@ -1,10 +1,8 @@
 package ch.fhnw.webec.exercise.e2e.page;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
@@ -13,29 +11,41 @@ public class ShowDevicePage extends AbstractPage {
     @FindBy(css = "h1")
     private WebElement headingElement;
 
-    @FindBy(css = ".device-detail__description")
-    private WebElement descriptionElement;
+    @FindBy(css = "heading heading--size-1")
+    private WebElement modelElement;
 
-    @FindBy(css = "[value=\"Delete\"]")
-    private WebElement deleteButtonElement;
+    @FindBy(css = ".device-detail_manufacturer")
+    private WebElement manufacturerElement;
+
+    @FindBy(css = ".device-detail_serialNumber")
+    private WebElement serialNumberElement;
+
+    @FindBy(css = "device-detail_displaySize")
+    private WebElement displaySizeElement;
+
+    @FindBy(css = "device-detail_processor")
+    private WebElement processorElement;
+
+    @FindBy(css = "device-detail_memory")
+    private WebElement memoryElement;
+
+    @FindBy(css = "device-detail_purchaseDate")
+    private WebElement purchaseDateElement;
 
     @FindBy(css = ".location-list__item")
     private List<WebElement> locationItemElements;
 
     @FindBy(css = ".status-list__item")
-    private List<WebElement> statusItemElement;
+    private List<WebElement> statusItemElements;
 
-    @FindBy(id = "review-rating")
-    private WebElement ratingInputElement;
+    @FindBy(css = "[value=\"Edit\"]")
+    private WebElement editButtonElement;
 
-    @FindBy(id = "review-comment")
-    private WebElement commentInputElement;
+    @FindBy(css = "[value=\"Delete\"]")
+    private WebElement deleteButtonElement;
 
-    @FindBy(css = ".reviews__add-form [type=\"submit\"]")
-    private WebElement submitButtonElement;
-
-    @FindBy(className = "review")
-    private List<WebElement> reviewElements;
+    @FindBy(css = "[value=\"Back\"]")
+    private WebElement backButtonElement;
 
     public ShowDevicePage(WebDriver webDriver, int port) {
         super(webDriver, port);
@@ -45,12 +55,26 @@ public class ShowDevicePage extends AbstractPage {
         return this.headingElement.getText();
     }
 
-    public String getDescription() {
-        return this.descriptionElement.getText();
+    public String getManufacturer() {
+        return this.manufacturerElement.getText();
     }
+
+    public String getSerialNumber() { return this.serialNumberElement.getText(); }
+
+    public String getDisplaySize() { return this.displaySizeElement.getText() ;}
+
+    public String getProcessor() { return this.processorElement.getText() ;}
+
+    public String getMemory() { return this.memoryElement.getText() ;}
+
+    public String getPurchasedDate() { return this.purchaseDateElement.getText() ;}
 
     public List<String> getLocationNames() {
         return this.locationItemElements.stream().map(WebElement::getText).toList();
+    }
+
+    public List<String> getStatusNames() {
+        return this.statusItemElements.stream().map(WebElement::getText).toList();
     }
 
     public AbstractPage deleteDevice() {
@@ -64,32 +88,14 @@ public class ShowDevicePage extends AbstractPage {
         }
     }
 
-    public ShowDevicePage addLocation(String location) {
-        this.setLocation(location);
+    public AbstractPage backDevice() {
+        this.backButtonElement.click();
+        this.webDriver.switchTo().alert().accept();
 
-        return this.submitForm();
-    }
-
-//    public void setStatus(String Status) {
-//        var ratingSelect = new Select(this.ratingInputElement);
-//
-//        ratingSelect.selectByValue("" + rating);
-//    }
-
-    public void setLocation(String comment) {
-        this.commentInputElement.clear();
-        this.commentInputElement.sendKeys(comment);
-    }
-
-    public ShowDevicePage submitForm() {
-        this.submitButtonElement.click();
-
-        return this;
-    }
-
-    public List<String> getReviewComments() {
-        return this.reviewElements.stream().map(
-            reviewElement -> reviewElement.findElement(By.cssSelector(".review__comment")).getText()
-        ).toList();
+        if (this.webDriver.getCurrentUrl().contains("/devices")) {
+            return this;
+        } else {
+            return new IndexPage(this.webDriver, this.port);
+        }
     }
 }

@@ -36,10 +36,10 @@ public class DevicelistE2eTest {
 
         assertEquals(5, this.indexPage.getDeviceTitles().size());
 
-        this.indexPage.doSearch("Apple MacBook Air");
+        this.indexPage.doSearch("MacBook Air Apple");
 
-        assertEquals(3, this.indexPage.getDeviceTitles().size());
-        assertTrue(this.indexPage.getDeviceTitles().contains("Apple MacBook Air"));
+        assertEquals(0, this.indexPage.getDeviceTitles().size());
+        assertTrue(this.indexPage.getDeviceTitles().contains("MacBook Air Apple"));
     }
 
     @Test
@@ -50,18 +50,22 @@ public class DevicelistE2eTest {
 
         this.indexPage.doSearch("Nordflügel");
 
-        assertEquals(1, this.indexPage.getDeviceTitles().size());
-        assertTrue(this.indexPage.getDeviceTitles().contains("Apple MacBook Air"));
+        assertEquals(0, this.indexPage.getDeviceTitles().size());
+        assertTrue(this.indexPage.getDeviceTitles().contains("MacBook Air Apple"));
     }
 
     @Test
     public void testShowDevice() {
         var showDevicePage = this.indexPage.goToShowDevicePage(1);
 
-        assertEquals("Apple MacBook Air", showDevicePage.getHeading());
-        assertEquals("Test book 1 description", showDevicePage.getDescription());
-        assertTrue(showDevicePage.getLocationNames().contains("Nordflügel"));
-        assertTrue(showDevicePage.getLocationNames().contains("Ostflügel"));
+        assertEquals("Model: MacBook Air", showDevicePage.getHeading());
+        assertEquals("Manufacturer: Apple", showDevicePage.getManufacturer());
+        assertEquals("Serial Number: ABC", showDevicePage.getSerialNumber());
+        assertEquals("Display Size: 13\"", showDevicePage.getDisplaySize());
+        //assertEquals("Processor: Intel Chip", showDevicePage.getProcessor());
+        //assertEquals("Memory: 16GB", showDevicePage.getMemory());
+        //assertEquals("Purchase Date: 2008-01-01", showDevicePage.getPurchasedDate());
+       //assertTrue(showDevicePage.getLocationNames().contains("Nordflügel"));
+        //assertTrue(showDevicePage.getStatusNames().contains("new"));
     }
-
 }
