@@ -13,6 +13,9 @@ INSERT IGNORE INTO Status (name)
 VALUES('assigned');
 INSERT IGNORE INTO Status (name)
 VALUES('broken');
+INSERT IGNORE INTO STATUS (name)
+VALUES('unassigned');
+
 
 INSERT IGNORE INTO Device (serial_Number, display_size, manufacturer, memory, model, processor, purchase_date, location_id, status_id)
 VALUES ('ABC', '13"', 'Apple', '16GB', 'MacBook Air', 'Intel Chip', '2008-01-01', 1,1);
@@ -24,5 +27,3 @@ INSERT IGNORE INTO Device (serial_Number, display_size, manufacturer, memory, mo
 VALUES ('JKL', '13"', 'Apple', '16GB', 'MacBook Air', 'Intel Chip', '2008-01-01', 2,1);
 INSERT IGNORE INTO Device (serial_Number, display_size, manufacturer, memory, model, processor, purchase_date, location_id, status_id)
 VALUES ('MNO', '13"', 'Apple', '8GB', 'iPad Pro Gen.4 2021', 'M1','2008-01-01', 3,3);
-
-
