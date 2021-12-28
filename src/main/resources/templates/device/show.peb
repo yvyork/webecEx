@@ -12,7 +12,7 @@
         <section class="device-detail">
             <h1 class="heading heading--size-1">{{ "Model: " + device.model }}</h1>
             <p class="device-detail_manufacturer">{{ "Manufacturer: " + device.manufacturer }}</p>
-            <p class="device-detail_serialNumber">{{ "Serial Number: " +device.serialNumber }}</p>
+            <p class="device-detail_serialNumber">{{ "Serial Number: " + device.serialNumber }}</p>
             <p class="device-detail_displaySize">{{ "Display Size: " + device.displaySize }}</p>
             <p class="device-detail_processor">{{ "Processor: " + device.processor }}</p>
             <p class="device-detail_memory">{{ "Memory: " + device.memory }}</p>
