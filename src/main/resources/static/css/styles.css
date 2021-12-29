@@ -3,6 +3,7 @@
     --primary-color: #271F30;
     --secondary-color: #29a586;
     --background-color: #F0EFF4;
+    --secondary-background-color: #789cd5;
     --danger-color: #E01A4F;
     --base-space: 1rem;
     --base-space-small: calc(var(--base-space) / 2);
@@ -31,7 +32,7 @@ body {
 }
 
 .device-list__item, .location-list__item{
-    background: #FFF;
+    background: var(--secondary-background-color);
     padding: var(--base-space);
     border-radius: var(--border-radius);
     border: 1px solid var(--secondary-color);

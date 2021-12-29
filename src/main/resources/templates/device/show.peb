@@ -19,7 +19,6 @@
             <p class="device-detail_processor">{{ "Processor: " + device.processor }}</p>
             <p class="device-detail_memory">{{ "Memory: " + device.memory }}</p>
             <p class="device-detail_purchaseDate">{{ "Purchase Date: " + device.purchaseDate }}</p>
-            {#<p class="device-detail_location">{{ "Location: " + locationList(device.location)}}</p>#}
             <p class="device-detail_location">{{ "Location: " + device.location.getLabel }}</p>
             <p class="device-detail_status">{{ "Status: " + device.status.getLabel }}</p>
 
