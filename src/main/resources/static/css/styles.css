@@ -1,3 +1,17 @@
+/** Custom Properties */
+:root {
+    --primary-color: #271F30;
+    --secondary-color: #29a586;
+    --background-color: #F0EFF4;
+    --danger-color: #E01A4F;
+    --base-space: 1rem;
+    --base-space-small: calc(var(--base-space) / 2);
+    --border-radius: var(--base-space-small);
+    --font-family-sans-serif: Roboto, sans-serif;
+    --font-family-serif: 'Playfair Display', serif;
+}
+
+
 * {
     box-sizing: border-box;
 }
@@ -6,4 +20,21 @@ body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
+}
+
+/** Device List **/
+
+.book-list__items {
+    display: grid;
+    grid-gap: var(--base-space-small);
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.book-list__item {
+    background: #FFF;
+    padding: var(--base-space);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    gap: var(--base-space-small);
 }
