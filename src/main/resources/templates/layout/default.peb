@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="author" content="Yves Bächtiger, Rainer Lehner">
+        <meta name="author" content="Yves Baechtiger, Rainer Lehner">
         <meta name="description" content="Device Management project for the module webeC">
 
         <title>{% block title %}Device Management{% endblock %}</title>
