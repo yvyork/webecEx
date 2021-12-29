@@ -11,18 +11,13 @@
     {% endif %}
 
     <div class="device-list">
+        <a class="device-list__add-button button" href="{{ href('/devices/add') }}">Add new Device</a>
+        </br>
         <div class="device-list__items">
             {% for device in devices %}
                 <div class="device-list__item">
                     <h2 class="device-list__heading heading heading--size-3">
                         <a href="{{ href('/devices/' + device.Id) }}" class="link">{{ device.model}}</a>
-                        <!--p class="device-list__deviceInformation">
-                            {{"Serialnumber: " + device.serialNumber +
-                            ", Display size: " + device.displaySize +
-                            ", Processor: " + device.processor +
-                            ", Memory: " + device.memory +
-                            ", Purchase date: " + device.purchaseDate}}
-                        </p-->
                         <!--p class="device-detail_manufacturer">{{ "Manufacturer: " + device.manufacturer }}</p-->
                         <p class="device-detail_serialNumber">{{ "Serial Number: " + device.serialNumber }}</p>
                         <p class="device-detail_displaySize">{{ "Display Size: " + device.displaySize }}</p>
@@ -35,8 +30,6 @@
                 </div>
             {% endfor %}
         </div>
-        <form action="{{ href('/devices/add') }}" method="get" class="device-list__add-button">
-            <input type="submit" value="Add new Device" class="button">
-        </form>
+
     </div>
 {% endblock %}
