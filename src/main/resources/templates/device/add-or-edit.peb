@@ -11,7 +11,7 @@
     <form method="post" class="form">
         {{ input("device", "Serial Number", "serialNumber", "text", device.serialNumber, _context) }}
         {{ input("device", "Model", "model", "text", device.model, _context) }}
-        {{ input("device", "Arbeitsspeicher", "memory", "text", device.memory, _context) }}
+        {{ input("device", "Memory", "memory", "text", device.memory, _context) }}
         {{ input("device", "Manufacturer", "manufacturer", "text", device.manufacturer, _context) }}
         {{ input("device", "Display Size", "displaySize", "text", device.displaySize, _context) }}
         {{ input("device", "Processor", "processor", "text", device.processor, _context) }}

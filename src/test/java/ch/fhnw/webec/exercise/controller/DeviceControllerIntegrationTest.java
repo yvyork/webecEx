@@ -41,7 +41,7 @@ public class DeviceControllerIntegrationTest {
 
     @Test
     public void testDeviceIndex() throws Exception {
-        this.mockMvc.perform(get("/devices"))
+        this.mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("List of Devices")));
     }
@@ -53,7 +53,7 @@ public class DeviceControllerIntegrationTest {
                 new Device("123", "iPad Pro", "12 Zoll", "Intel", "01.02.2021", "8GB", "Apple")
                 ));
 
-        this.mockMvc.perform(get("/devices"))
+        this.mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("ABC")))
                 .andExpect(content().string(containsString("MacBook Air")))
@@ -76,7 +76,7 @@ public class DeviceControllerIntegrationTest {
     public void testSearch() throws Exception {
         var search = "my test search";
 
-        this.mockMvc.perform(get("/devices/?search={search}", search))
+        this.mockMvc.perform(get("/?search={search}", search))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString(search)));
 
@@ -101,7 +101,7 @@ public class DeviceControllerIntegrationTest {
     }
 
     @Test
-    public void testDeleteBook() throws Exception {
+    public void testDeleteDevice() throws Exception {
         var deviceId = 1;
         var device = new Device("ABC", "MacBook Air", "13 Zoll", "M1", "01.01.2021", "16GB",
                 "Apple");
@@ -115,7 +115,8 @@ public class DeviceControllerIntegrationTest {
         verify(this.deviceRepository, times(1)).delete(device);
 
     }
-    // test edit location?
+
+    // TODO: 29.12.21 TestAddDevice
     @Test
     public void testEditLocation() throws Exception {
 
