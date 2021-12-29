@@ -27,19 +27,19 @@ public class LocationRepositoryIntegrationTest {
         var firstLocation = locations.get(0);
         // then
         assertEquals(4, locations.size());
-        assertEquals("Nordflügel", firstLocation.getBuildingName());
+        assertEquals("Nordfluegel", firstLocation.getBuildingName());
     }
 
     @Test
     public void testSaveLocation(){
         // given
-        var location = new Location("Nordwestflügel","EG01","Musterstrasse 1", "3000 Bern");
+        var location = new Location("Nordwestfluegel","EG01","Musterstrasse 1", "3000 Bern");
         assertEquals(4, this.locationRepository.findAll().size());
         // when
         var savedLocation = this.locationRepository.save(location);
         // then
         assertEquals(5, this.locationRepository.findAll().size());
-        assertEquals("Nordwestflügel", savedLocation.getBuildingName());
+        assertEquals("Nordwestfluegel", savedLocation.getBuildingName());
     }
 
     @Test
@@ -52,16 +52,16 @@ public class LocationRepositoryIntegrationTest {
     public void testUpdateLocation() {
         // given
         var location = this.locationRepository.findById(1).get();
-        assertEquals("Nordflügel", location.getBuildingName());
+        assertEquals("Nordfluegel", location.getBuildingName());
         // when
-        location.setBuildingName("Nordostflügel");
+        location.setBuildingName("Nordostfluegel");
         location.setRoomName("EG02");
         location.setStreetAndNumber("Musterstrasse 10");
         location.setZipCity("3000 Bern 10");
         var savedLocation = this.locationRepository.save(location);
         // then
         assertEquals(4, locationRepository.findAll().size());
-        assertEquals("Nordostflügel", savedLocation.getBuildingName());
+        assertEquals("Nordostfluegel", savedLocation.getBuildingName());
         assertEquals("EG02", savedLocation.getRoomName());
         assertEquals("Musterstrasse 10", savedLocation.getStreetAndNumber());
         assertEquals("3000 Bern 10", savedLocation.getZipCity());

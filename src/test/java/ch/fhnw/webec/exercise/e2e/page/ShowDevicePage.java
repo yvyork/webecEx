@@ -47,6 +47,9 @@ public class ShowDevicePage extends AbstractPage {
     @FindBy(css = "[value=\"Back\"]")
     private WebElement backButtonElement;
 
+    @FindBy(css = ".device-list__deviceInformation")
+    private WebElement deviceInformationElement;
+
     public ShowDevicePage(WebDriver webDriver, int port) {
         super(webDriver, port);
     }
@@ -59,6 +62,10 @@ public class ShowDevicePage extends AbstractPage {
         return this.manufacturerElement.getText();
     }
 
+    public String getModel() {
+        return this.modelElement.getText();
+    }
+
     public String getSerialNumber() { return this.serialNumberElement.getText(); }
 
     public String getDisplaySize() { return this.displaySizeElement.getText() ;}
@@ -68,6 +75,8 @@ public class ShowDevicePage extends AbstractPage {
     public String getMemory() { return this.memoryElement.getText() ;}
 
     public String getPurchasedDate() { return this.purchaseDateElement.getText() ;}
+
+    public String getDeviceInformationElement() { return this.deviceInformationElement.getText(); }
 
     public List<String> getLocationNames() {
         return this.locationItemElements.stream().map(WebElement::getText).toList();
