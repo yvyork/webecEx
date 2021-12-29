@@ -34,6 +34,7 @@ public class DeviceController {
 
     @RequestMapping(path = "/devices", method = RequestMethod.GET)
     public String index(@RequestParam() Optional<String> search, Model model) {
+        model.addAttribute("search", search.orElse(""));
         model.addAttribute("devices", this.deviceRepository.findBySearch(search.orElse("")));
 
         return "device/index";

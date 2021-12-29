@@ -43,6 +43,19 @@ public class Device {
 
     public Device() {}
 
+    // Constructor for Integration Tests
+    public Device(String serialNumber, String model, String displaySize, String processor,
+                  String purchaseDate, String memory, String manufacturer) {
+        this();
+        this.serialNumber = serialNumber;
+        this.model = model;
+        this.displaySize = displaySize;
+        this.processor = processor;
+        this.purchaseDate = purchaseDate;
+        this.memory = memory;
+        this.manufacturer = manufacturer;
+    }
+
     public int getId() {
         return Id;
     }
