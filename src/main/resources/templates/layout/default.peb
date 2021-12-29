@@ -7,6 +7,7 @@
         <meta name="description" content="Device Management project for the module webeC">
 
         <title>{% block title %}Device Management{% endblock %}</title>
+        <link href="{{ href('/css/styles.css') }}" rel="stylesheet" />
 
 </head>
 <body>
