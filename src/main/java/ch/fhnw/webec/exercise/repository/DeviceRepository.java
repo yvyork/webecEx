@@ -11,7 +11,7 @@ public interface DeviceRepository extends JpaRepository<Device, Integer> {
     @Query("""
         Select device
             FROM Device device
-            INNER JOIN device.location location 
+            INNER JOIN device.location location
             INNER JOIN device.status status
         WHERE LOWER(device.model) LIKE LOWER(CONCAT('%', :search, '%'))
             OR LOWER(device.manufacturer) LIKE LOWER(CONCAT('%', :search, '%'))
