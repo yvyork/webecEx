@@ -22,12 +22,12 @@ abstract public class AbstractPage {
             .queryParam("search", search).build().toString());
     }
 
-//    public AddOrEditDevicePage goToAddDevicePage() {
-//        this.webDriver.navigate().to(this.getUriBuilder()
-//            .path("/devices/add").build().toString());
-//
-//        return new AddOrEditDevicePage(this.webDriver, this.port);
-//    }
+    public AddOrEditDevicePage goToAddDevicePage() {
+        this.webDriver.navigate().to(this.getUriBuilder()
+            .path("/devices/add").build().toString());
+
+        return new AddOrEditDevicePage(this.webDriver, this.port);
+    }
 //
 //    public AddOrEditDevicePage goToEditDevicePage(int deviceId) {
 //        this.webDriver.navigate().to(this.getUriBuilder()
@@ -38,7 +38,7 @@ abstract public class AbstractPage {
 
     public IndexPage goToIndexPage() {
         this.webDriver.navigate().to(this.getUriBuilder()
-            .path("/devices").build().toString());
+            .path("/").build().toString());
 
         return new IndexPage(this.webDriver, this.port);
     }

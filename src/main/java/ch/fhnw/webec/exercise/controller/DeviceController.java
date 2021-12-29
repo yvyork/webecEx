@@ -32,7 +32,7 @@ public class DeviceController {
 
     }
 
-    @RequestMapping(path = "/devices", method = RequestMethod.GET)
+    @RequestMapping(path = "/", method = RequestMethod.GET)
     public String index(@RequestParam() Optional<String> search, Model model) {
         model.addAttribute("devices", this.deviceRepository.findBySearch(search.orElse("")));
 
@@ -63,7 +63,7 @@ public class DeviceController {
             return "device/add-or-edit";
         } else {
             this.deviceRepository.save(device);
-            return "redirect:/devices/";
+            return "redirect:/";
         }
     }
 
@@ -88,13 +88,13 @@ public class DeviceController {
         } else {
             this.deviceRepository.save(device);
 
-            return "redirect:/devices/" + device.getId();
+            return "redirect:/" + device.getId();
         }
     }
 
     @RequestMapping(path = "/devices/{id}/delete", method = RequestMethod.POST)
     public String deleteDevice(@PathVariable int id) {
         this.deviceRepository.delete(this.deviceRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
-        return "redirect:/devices/";
+        return "redirect:/";
     }
 }

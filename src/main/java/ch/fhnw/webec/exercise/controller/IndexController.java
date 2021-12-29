@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class IndexController {
-    @RequestMapping(path = "/", method = RequestMethod.GET)
+    @RequestMapping(path = "/index", method = RequestMethod.GET)
     public String index(Model model) {
         model.addAttribute("title", "Hello World");
 
-        return "index";
+        return "device/index";
     }
 }

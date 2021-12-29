@@ -11,6 +11,8 @@ public interface DeviceRepository extends JpaRepository<Device, Integer> {
     @Query("""
         Select device
             FROM Device device
+            INNER JOIN device.location location 
+            INNER JOIN device.status status
         WHERE LOWER(device.model) LIKE LOWER(CONCAT('%', :search, '%'))
             OR LOWER(device.manufacturer) LIKE LOWER(CONCAT('%', :search, '%'))
             OR LOWER(device.serialNumber) LIKE LOWER(CONCAT('%', :search, '%'))
@@ -18,6 +20,11 @@ public interface DeviceRepository extends JpaRepository<Device, Integer> {
             OR LOWER(device.processor) LIKE LOWER(CONCAT('%', :search, '%'))
             OR LOWER(device.memory) LIKE LOWER(CONCAT('%', :search, '%'))
             OR LOWER(device.purchaseDate) LIKE LOWER(CONCAT('%', :search, '%'))
+            OR LOWER(location.buildingName) LIKE LOWER(CONCAT('%', :search, '%'))
+            OR LOWER(location.roomName) LIKE LOWER(CONCAT('%', :search, '%'))
+            OR LOWER(location.streetAndNumber) LIKE LOWER(CONCAT('%', :search, '%'))
+            OR LOWER(location.zipCity) LIKE LOWER(CONCAT('%', :search, '%'))
+            OR LOWER(status.name) LIKE LOWER(CONCAT('%', :search, '%'))
     """)
 
 
