@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="author" content="Yves Baechtiger, Rainer Lehner">
+        <meta name="author" content="Yves Bächtiger, Rainer Lehner">
         <meta name="description" content="Device Management project for the module webeC">
 
         <title>{% block title %}Device Management{% endblock %}</title>
@@ -28,22 +28,6 @@
                 <input class="header__submit" type="submit" value="Search" />
             </form>
 
-
-{#            <form action="/" method="get" class="header__search">#}
-{#                {# @pebvariable name="search" type="java.lang.String" #}
-{#                <input class="header__input" type="text" name="search" value="{{ search }}" placeholder="search" />#}
-{#                <input class="header__submit" type="submit" value="Search" />#}
-{#            </form>#}
-{#            <!--form action="/locations" method="get" class="header__search">#}
-{#                {# @pebvariable name="search" type="java.lang.String" #}
-{#                <input class="header__input" type="text" name="search" value="{{ search }}" placeholder="Location search" />#}
-{#                <input class="header__submit" type="submit" value="Search" />#}
-{#            </form-->#}
-{#            <!--form action="/statuses" method="get" class="header__search">#}
-{#                {# @pebvariable name="search" type="java.lang.String" #}
-{#                <input class="header__input" type="text" name="search" value="{{ search }}" placeholder="Status search" />#}
-{#                <input class="header__submit" type="submit" value="Search" />#}
-{#            </form-->#}
         </div>
     </header>
     <main class="main">

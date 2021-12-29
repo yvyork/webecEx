@@ -18,9 +18,18 @@
 }
 
 body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    background: var(--background-color);
+}
+
+.container {
+    max-width: 960px;
+    margin: auto;
+    padding: 0 var(--base-space);
 }
 
 /** Device List **/
