@@ -11,7 +11,7 @@
 
 {% block content %}
 <section class="location-detail">
-    <h1 class="heading heading--size-1">{{ "Building Name: " + location.buildingName}}</h1>
+    <h2 class="heading heading--size-2">{{ location.buildingName}}</h2>
     <p class="location-detail_roomName">{{ "Room Name: " + location.roomName}}</p>
     <p class="location-detail__streetAndNumber">{{ "Street/Number: " + location.streetAndNumber }}</p>
     <p class="location-detail__zipCity">{{ "ZIP/City: " + location.zipCity }}</p>

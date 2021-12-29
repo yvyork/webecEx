@@ -18,7 +18,7 @@
                 <!--span class="header__text">Devicelist</span-->
                 <p><a href="{{ href('/') }}" class="link">List of Devices</a></p>
                 <p><a href="{{ href('/locations/') }}" class="link">List of Locations</a></p>
-                <p><a href="{{ href('/statuses/') }}" class="link">List of Status</a></p>
+                <!--p><a href="{{ href('/statuses/') }}" class="link">List of Status</a></p-->
             </a>
             <form action="/" method="get" class="header__search">
                 {# @pebvariable name="search" type="java.lang.String" #}

@@ -24,17 +24,22 @@ body {
 
 /** Device List **/
 
-.book-list__items {
+.device-list__items, .location-list__items{
     display: grid;
     grid-gap: var(--base-space-small);
     grid-template-columns: 1fr 1fr 1fr;
 }
 
-.book-list__item {
+.device-list__item, .location-list__item{
     background: #FFF;
     padding: var(--base-space);
     border-radius: var(--border-radius);
+    border: 1px solid var(--secondary-color);
     display: flex;
     flex-direction: column;
     gap: var(--base-space-small);
+}
+
+.heading--size-1{
+    text-align: center;
 }
