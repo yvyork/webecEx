@@ -10,12 +10,12 @@
         <p>Results for: "{{ search }}"</p>
     {% endif %}
 
-    <div class="device-list">
+    <main class="device-list">
         <a class="device-list__add-button button" href="{{ href('/devices/add') }}">Add new Device</a>
         </br>
-        <div class="device-list__items">
+        <article class="device-list__items">
             {% for device in devices %}
-                <div class="device-list__item">
+                <section class="device-list__item">
                     <h2 class="device-list__heading heading heading--size-3">
                         <a href="{{ href('/devices/' + device.Id) }}" class="link">{{ device.model}}</a>
                     </h2>
@@ -28,9 +28,9 @@
                     <p class="device-detail_location">{{ "Location: " + device.location.getLabel }}</p>
                     <p class="device-detail_status">{{ "Status: " + device.status.getLabel }}</p>
 
-                </div>
+                </section>
             {% endfor %}
-        </div>
+        </article>
 
-    </div>
+    </main>
 {% endblock %}
