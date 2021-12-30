@@ -125,17 +125,37 @@ public class DevicelistE2eTest {
 
     @Test
     @DirtiesContext
-    public void testEditDevice() {
+    public void testEditDeviceModel() {
         var showDevicePage = this.indexPage.goToShowDevicePage(1);
         assertEquals("MacBook Air", showDevicePage.getHeading());
+        assertEquals("Manufacturer: Apple", showDevicePage.getManufacturer());
+        assertEquals("Serial Number: ABC", showDevicePage.getSerialNumber());
+        assertEquals("Display Size: 13\"", showDevicePage.getDisplaySize());
+        assertEquals("Processor: Intel Chip", showDevicePage.getProcessor());
+        assertEquals("Memory: 16GB", showDevicePage.getMemory());
+        assertEquals("Purchase Date: 2008-01-01", showDevicePage.getPurchasedDate());
+        assertEquals("Location: Nordfluegel EG01", showDevicePage.getLocation());
+        assertEquals("Status: new", showDevicePage.getStatus());
 
         var editDevicePage = showDevicePage.goToEditDevicePage(1);
 
+        editDevicePage.setSerialNumber("DEF");
         editDevicePage.setModel("MacBook Air next generation");
+        editDevicePage.setMemory("32GB");
+        editDevicePage.setManufacturer("Apple++");
+        editDevicePage.setDisplaySize("14\"");
+        editDevicePage.setProcessor("M2");
+        editDevicePage.setPurchaseDate("2022-01-01");
         var abstractPage = editDevicePage.submitForm();
 
         if (abstractPage instanceof ShowDevicePage showDevicePageEdited) {
             assertEquals("MacBook Air next generation", showDevicePageEdited.getModel());
+            assertEquals("Manufacturer: Apple++", showDevicePageEdited.getManufacturer());
+            assertEquals("Serial Number: DEF", showDevicePageEdited.getSerialNumber());
+            assertEquals("Display Size: 14\"", showDevicePageEdited.getDisplaySize());
+            assertEquals("Processor: M2", showDevicePageEdited.getProcessor());
+            assertEquals("Memory: 32GB", showDevicePageEdited.getMemory());
+            assertEquals("Purchase Date: 2022-01-01", showDevicePageEdited.getPurchasedDate());
         } else {
             fail();
         }
