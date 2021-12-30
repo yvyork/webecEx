@@ -8,10 +8,10 @@ import java.util.List;
 
 public class ShowDevicePage extends AbstractPage {
 
-    @FindBy(css = "h1")
+    @FindBy(css = "h2")
     private WebElement headingElement;
 
-    @FindBy(css = "heading heading--size-1")
+    @FindBy(css = "heading heading--size-2")
     private WebElement modelElement;
 
     @FindBy(css = ".device-detail_manufacturer")
@@ -20,23 +20,29 @@ public class ShowDevicePage extends AbstractPage {
     @FindBy(css = ".device-detail_serialNumber")
     private WebElement serialNumberElement;
 
-    @FindBy(css = "device-detail_displaySize")
+    @FindBy(css = ".device-detail_displaySize")
     private WebElement displaySizeElement;
 
-    @FindBy(css = "device-detail_processor")
+    @FindBy(css = ".device-detail_processor")
     private WebElement processorElement;
 
-    @FindBy(css = "device-detail_memory")
+    @FindBy(css = ".device-detail_memory")
     private WebElement memoryElement;
 
-    @FindBy(css = "device-detail_purchaseDate")
+    @FindBy(css = ".device-detail_purchaseDate")
     private WebElement purchaseDateElement;
 
-    @FindBy(css = ".location-list__item")
-    private List<WebElement> locationItemElements;
+    @FindBy(css = ".device-detail_location")
+    private WebElement locationElement;
 
-    @FindBy(css = ".status-list__item")
-    private List<WebElement> statusItemElements;
+    @FindBy(css = ".device-detail_status")
+    private WebElement statusElement;
+
+//    @FindBy(css = ".location-list__item")
+//    private List<WebElement> locationItemElements;
+//
+//    @FindBy(css = ".status-list__item")
+//    private List<WebElement> statusItemElements;
 
     @FindBy(css = "[value=\"Edit\"]")
     private WebElement editButtonElement;
@@ -47,8 +53,8 @@ public class ShowDevicePage extends AbstractPage {
     @FindBy(css = "[value=\"Back\"]")
     private WebElement backButtonElement;
 
-    @FindBy(css = ".device-list__deviceInformation")
-    private WebElement deviceInformationElement;
+//    @FindBy(css = ".device-list__deviceInformation")
+//    private WebElement deviceInformationElement;
 
     public ShowDevicePage(WebDriver webDriver, int port) {
         super(webDriver, port);
@@ -76,15 +82,19 @@ public class ShowDevicePage extends AbstractPage {
 
     public String getPurchasedDate() { return this.purchaseDateElement.getText() ;}
 
-    public String getDeviceInformationElement() { return this.deviceInformationElement.getText(); }
+    public String getLocation() { return this.locationElement.getText() ;}
 
-    public List<String> getLocationNames() {
-        return this.locationItemElements.stream().map(WebElement::getText).toList();
-    }
+    public String getStatus() { return this.statusElement.getText() ;}
 
-    public List<String> getStatusNames() {
-        return this.statusItemElements.stream().map(WebElement::getText).toList();
-    }
+//    public String getDeviceInformationElement() { return this.deviceInformationElement.getText(); }
+
+//    public List<String> getLocationNames() {
+//        return this.locationItemElements.stream().map(WebElement::getText).toList();
+//    }
+
+//    public List<String> getStatusNames() {
+//        return this.statusItemElements.stream().map(WebElement::getText).toList();
+//    }
 
     public AbstractPage deleteDevice() {
         this.deleteButtonElement.click();
@@ -106,5 +116,10 @@ public class ShowDevicePage extends AbstractPage {
         } else {
             return new IndexPage(this.webDriver, this.port);
         }
+    }
+
+    public void setModel(String model) {
+        this.modelElement.clear();
+        this.modelElement.sendKeys(model);
     }
 }

@@ -16,11 +16,10 @@
                 <div class="status-list__item">
                     <h2 class="status-list__heading heading heading--size-3">
                         <a href="{{ href('/statuses/' + status.id) }}" class="link">{{ status.Name}}</a>
-                        <p class="status-list__name">
-                            {{"Status ID: " + status.id +
-                            ", Name: " + status.name }}
-                        </p>
                     </h2>
+                    <p class="status-list__name">
+                            {{"Status ID: " + status.id + ", Name: " + status.name }}
+                    </p>
                 </div>
             {% endfor %}
         </div>
