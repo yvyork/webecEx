@@ -38,12 +38,6 @@ public class ShowDevicePage extends AbstractPage {
     @FindBy(css = ".device-detail_status")
     private WebElement statusElement;
 
-//    @FindBy(css = ".location-list__item")
-//    private List<WebElement> locationItemElements;
-//
-//    @FindBy(css = ".status-list__item")
-//    private List<WebElement> statusItemElements;
-
     @FindBy(css = "[value=\"Edit\"]")
     private WebElement editButtonElement;
 
@@ -52,9 +46,6 @@ public class ShowDevicePage extends AbstractPage {
 
     @FindBy(css = "[value=\"Back\"]")
     private WebElement backButtonElement;
-
-//    @FindBy(css = ".device-list__deviceInformation")
-//    private WebElement deviceInformationElement;
 
     public ShowDevicePage(WebDriver webDriver, int port) {
         super(webDriver, port);
@@ -72,33 +63,37 @@ public class ShowDevicePage extends AbstractPage {
         return this.modelElement.getText();
     }
 
-    public String getSerialNumber() { return this.serialNumberElement.getText(); }
+    public String getSerialNumber() {
+        return this.serialNumberElement.getText();
+    }
 
-    public String getDisplaySize() { return this.displaySizeElement.getText() ;}
+    public String getDisplaySize() {
+        return this.displaySizeElement.getText();
+    }
 
-    public String getProcessor() { return this.processorElement.getText() ;}
+    public String getProcessor() {
+        return this.processorElement.getText();
+    }
 
-    public String getMemory() { return this.memoryElement.getText() ;}
+    public String getMemory() {
+        return this.memoryElement.getText();
+    }
 
-    public String getPurchasedDate() { return this.purchaseDateElement.getText() ;}
+    public String getPurchasedDate() {
+        return this.purchaseDateElement.getText();
+    }
 
-    public String getLocation() { return this.locationElement.getText() ;}
+    public String getLocation() {
+        return this.locationElement.getText();
+    }
 
-    public String getStatus() { return this.statusElement.getText() ;}
-
-//    public String getDeviceInformationElement() { return this.deviceInformationElement.getText(); }
-
-//    public List<String> getLocationNames() {
-//        return this.locationItemElements.stream().map(WebElement::getText).toList();
-//    }
-
-//    public List<String> getStatusNames() {
-//        return this.statusItemElements.stream().map(WebElement::getText).toList();
-//    }
+    public String getStatus() {
+        return this.statusElement.getText();
+    }
 
     public AbstractPage deleteDevice() {
         this.deleteButtonElement.click();
-        this.webDriver.switchTo().alert().accept();
+        //this.webDriver.switchTo().alert().accept();
 
         if (this.webDriver.getCurrentUrl().contains("/devices")) {
             return this;

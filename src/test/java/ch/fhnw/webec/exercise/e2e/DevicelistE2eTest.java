@@ -149,12 +149,18 @@ public class DevicelistE2eTest {
         }
 
         var indexPage = this.indexPage.goToIndexPage();
-        assertTrue(indexPage.getDeviceTitles().contains("MacBook Air"));
+        assertTrue(indexPage.getDeviceTitles().contains("MacBook SuperMegaGeil"));
 
-        var showDevicePage = this.indexPage.goToShowDevicePage(1);
-        //var editDevicePage = showDevicePage.goToEditDevicePage(1);
+        var showDevicePage = this.indexPage.goToShowDevicePage(2);
+        assertEquals("MacBook SuperMegaGeil", showDevicePage.getHeading());
 
-        //assertEquals("MacBook Air", indexPage.getHeading());
+        var abstractPage = showDevicePage.deleteDevice();
+
+        if (abstractPage instanceof IndexPage indexPageEdited) {
+            assertFalse(indexPageEdited.getDeviceTitles().contains("MacBook SuperMegaGeil"));
+        } else {
+            fail();
+        }
 
     }
 
