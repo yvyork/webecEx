@@ -132,13 +132,13 @@ public class DevicelistE2eTest {
         var editDevicePage = showDevicePage.goToEditDevicePage(1);
 
         editDevicePage.setModel("MacBook Air next generation");
-        //var abstractPage = editDevicePage.submitForm();
+        var abstractPage = editDevicePage.submitForm();
 
-        //if (abstractPage instanceof ShowDevicePage showDevicePageEdited) {
-//            assertEquals("MacBook Air next generation", showDevicePageEdited.getModel());
-//        } else {
-//            fail();
-//        }
+        if (abstractPage instanceof ShowDevicePage showDevicePageEdited) {
+            assertEquals("MacBook Air next generation", showDevicePageEdited.getModel());
+        } else {
+            fail();
+        }
     }
 
     @Test

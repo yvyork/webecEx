@@ -11,7 +11,7 @@ public class ShowDevicePage extends AbstractPage {
     @FindBy(css = "h2")
     private WebElement headingElement;
 
-    @FindBy(css = "heading heading--size-2")
+    @FindBy(css = ".heading--size-2")
     private WebElement modelElement;
 
     @FindBy(css = ".device-detail_manufacturer")

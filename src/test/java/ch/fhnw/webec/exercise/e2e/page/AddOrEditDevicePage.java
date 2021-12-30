@@ -37,7 +37,7 @@ public class AddOrEditDevicePage  extends AbstractPage {
     @FindBy(id = "device-status")
     private WebElement statusInputElement;
 
-    @FindBy(css = "[value=\"Save\"]")
+    @FindBy(css = ".form [type=\"submit\"]")
     private WebElement submitButtonElement;
 
     public AddOrEditDevicePage(WebDriver webDriver, int port) {

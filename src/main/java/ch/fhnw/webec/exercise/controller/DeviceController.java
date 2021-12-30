@@ -89,7 +89,7 @@ public class DeviceController {
         } else {
             this.deviceRepository.save(device);
 
-            return "redirect:/" + device.getId();
+            return "redirect:/devices/" + device.getId();
         }
     }
 
