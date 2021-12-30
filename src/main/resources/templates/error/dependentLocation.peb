@@ -1,0 +1,8 @@
+{% extends "layout/default" %}
+
+{% block title %}Dependency error{% endblock %}
+
+{% block content %}
+    <h1 class="heading heading--size-1">Dependency error</h1>
+    <p>There are dependent Devices on this Location. Please assign them to a different location.</p>
+{% endblock %}

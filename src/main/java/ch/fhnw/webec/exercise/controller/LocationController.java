@@ -70,7 +70,11 @@ public class LocationController {
 
     @RequestMapping(path = "/locations/{id}/delete", method = RequestMethod.POST)
     public String deleteLocation(@PathVariable int id) {
-        this.locationRepository.delete(this.locationRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
-        return "redirect:/locations/";
+        if (locationRepository.findDependendDevices(id) > 0) {
+            return "error/dependentLocation";
+        } else {
+            this.locationRepository.delete(this.locationRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
+            return "redirect:/locations/";
+        }
     }
 }
