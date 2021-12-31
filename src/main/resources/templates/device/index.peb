@@ -27,6 +27,8 @@
                     <p class="device-detail_location">{{ "Location: " + device.location.getLabel }}</p>
                     <p class="device-detail_status">{{ "Status: " + device.status.getLabel }}</p>
 
+                    <a href="{{ href('/devices/' + device.Id + '/edit') }}" class="editbtn">Edit</a>
+
                 </section>
             {% endfor %}
         </article>

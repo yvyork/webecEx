@@ -193,4 +193,42 @@ body {
     background-color: #3e8e41;
 }
 
+/* Edit Button */
 
+.editbtn {
+    background-color: #071c08;
+    color: white;
+    padding: 10px 24px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.subbutton {
+    background-color: #071c08;
+    color: white;
+    padding: 10px 24px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.device-detail__edit-form {
+    float: left;
+    padding: 15px;
+}
+
+.device-detail__delete-form {
+    padding: 15px;
+}
+.button {
+    background-color: #071c08;
+    color: white;
+    padding: 10px 24px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+}
