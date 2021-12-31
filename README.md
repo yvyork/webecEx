@@ -30,7 +30,7 @@ Es können neue Geräte erfasst und gelöscht werden. Weiter ist es möglich, ei
 
 ## UML
 
-![UML](https://user-images.githubusercontent.com/61004874/142725720-ee98ff70-cc5e-49fe-b232-2b0e3df26b1b.png)
+![UML_V3](https://user-images.githubusercontent.com/71099031/147819042-8a6d6c5b-10f7-498b-98d0-71058592ac3d.png)
 
 ### Extras
 
