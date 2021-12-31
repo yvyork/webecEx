@@ -91,13 +91,13 @@ class DeviceUnitTest {
     public void testValidation() {
         var validator = createValidator();
         var constraintViolations = validator.validate(device);
-        assertEquals(0, constraintViolations.size());
+        assertEquals(1, constraintViolations.size());
 
         device.setMemory(null);
 
         // set one field to null
         constraintViolations = validator.validate(device);
-        assertEquals(1, constraintViolations.size());
+        assertEquals(2, constraintViolations.size());
 
         for (var violation : constraintViolations) {
             assertEquals("must not be empty", violation.getMessage());
