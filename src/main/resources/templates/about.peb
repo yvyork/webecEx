@@ -4,5 +4,46 @@
 
 {% block content %}
     <h1 class="heading heading--size-1">About</h1>
-    <p>This is a sample application for the module Web Engineering at the FHNW. It shows a list of books, allows to add and edit books and write book ratings.</p>
+    <section>
+        <h3>Team members</h3>
+        <p>Bächtiger Yves, Lehner Rainer</p>
+    </section>
+    <section>
+        <h3>Description</h3>
+        <p>This web application is a semester project in the webec modul 2021 at the University of Applied Sciences and Arts Northwestern Switzerland.</p>
+        <p>It provides an inventory management for Apple devices. Device information such as</p>
+        <ul>
+            <li>Manufacturer</li>
+            <li>Model</li>
+            <li>Serial number</li>
+            <li>Processor</li>
+            <li>Memory</li>
+            <li>Display size</li>
+            <li>Purchase date</li>
+        </ul>
+        <p>can be entered. In addition, location and status information can be selected for the devices.</p>
+        <p>New devices can be added, the properties can be read and updated and the devices can be deleted. It is also possible to assign a new location or status to an existing device.</p>
+        <p>The locations have information like building- and room-name and address information as well. They can be created, read, updated and delete if no device depends on them.</p>
+        <p>The Status are provided with the application and have just a name field.</p>
+    </section>
+    <section>
+        <h3>Technical preconditions</h3>
+        <p>The following general conditions were given for the project work</p>
+        <ul>
+            <li>The web application uses Spring Boot from the Spring Framework.</li>
+            <li>The &quot;Web Model View Controller&quot; design pattern should be implemented.</li>
+            <li>Gradle should be used as the build tool.</li>
+            <li>The Java SDK 17 should be used and code should be written in Java 17.</li>
+            <li>The view layer should be implemented view pebble templating engine.</li>
+            <li>The Java Persistence API (JPA) and Spring Data JPA should be used for the object-relational mapping.</li>
+            <li>The H2 Database should be used for the persistence layer.</li>
+        </ul>
+    </section>
+    <section>
+        <h3>Technical implementation</h3>
+        <h4>Model</h4>
+            <p>The model is based on three classes. One each for devices, locations and status and they are connected with two Many-to-One Connections.</p>
+        <h4>Testing</h4>
+        <p>The functional testing were devided in three types. For <strong>Unit Tests</strong> the JUnit testing framework and Mockito for mocking dependencies was used. The <strong>Integration Tests</strong> were written for the controller and the repository classes. The Selenium Suite was used to automated Google Chrome browser for the <strong>End-to-End Tests<strong>.</p>
+    </section>
 {% endblock %}
