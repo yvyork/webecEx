@@ -13,10 +13,13 @@
 <body>
     <header class="header">
         <main class="header__container container">
-            <a href="{{ href('/') }}" class="header__logo">
-                <p><a href="{{ href('/') }}" class="link">List of Devices</a></p>
-                <p><a href="{{ href('/locations/') }}" class="link">List of Locations</a></p>
-            </a>
+            <div class="dropdown">
+                <button class="dropbtn">Navigation</button>
+                    <div class="dropdown-content">
+                            <a href="{{ href('/') }}" class="link">List of Devices</a>
+                            <a href="{{ href('/locations/') }}" class="link">List of Locations</a>
+                    </div>
+            </div>
 
              <form action="/" method="get" class="header__search">
                 {# @pebvariable name="search" type="java.lang.String" #}
