@@ -28,6 +28,7 @@ body {
     padding: 0;
     background: var(--background-color);
     font-family: var(--font-family-sans-serif);
+
 }
 
 .container {
@@ -42,6 +43,7 @@ body {
     display: grid;
     grid-gap: var(--secondary-base-space);
     grid-template-columns: 1fr 1fr 1fr;
+
 }
 
 .device-list__item, .location-list__item{
@@ -54,6 +56,7 @@ body {
     gap: var(--base-space-small);
     /*box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;*/
     box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+
 }
 
 .heading--size-1{
@@ -153,7 +156,7 @@ body {
 /*dropdown*/
 
 .dropbtn {
-    background-color: #4CAF50;
+    background-color: #071c08;
     color: white;
     padding: 10px 24px;
     font-size: 16px;
@@ -190,7 +193,7 @@ body {
 }
 
 .dropdown:hover .dropbtn {
-    background-color: #3e8e41;
+    background-color: #9dc0e1;
 }
 
 /* Edit Button */
@@ -203,9 +206,11 @@ body {
     border: none;
     cursor: pointer;
     border-radius: 8px;
+    text-decoration: none;
 }
 
 .subbutton {
+    alignment: center;
     background-color: #071c08;
     color: white;
     padding: 10px 24px;
@@ -218,6 +223,7 @@ body {
 .device-detail__edit-form {
     float: left;
     padding: 15px;
+    
 }
 
 .device-detail__delete-form {
@@ -231,4 +237,18 @@ body {
     border: none;
     cursor: pointer;
     border-radius: 8px;
+}
+.form__field {
+    padding: 10px;
+}
+
+.form__label{
+    color: #071c08;
+    padding-bottom: 10px;
+}
+
+.form__input {
+    border: none;
+    border-radius: 8px;
+
 }
