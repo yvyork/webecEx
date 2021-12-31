@@ -18,6 +18,7 @@
                     <div class="dropdown-content">
                             <a href="{{ href('/') }}" class="link">List of Devices</a>
                             <a href="{{ href('/locations/') }}" class="link">List of Locations</a>
+                            <a href="{{ href('/about/') }}" class="link">About</a>
                     </div>
             </div>
 
