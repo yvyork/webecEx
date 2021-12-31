@@ -23,8 +23,5 @@
                 </section>
             {% endfor %}
         </article>
-        <form action="{{ href('/locations/add') }}" method="get" class="location-list__add-button">
-            <input type="submit" value="Add new Location" class="button">
-        </form>
     </main>
 {% endblock %}

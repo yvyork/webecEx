@@ -11,8 +11,7 @@
     {% endif %}
 
     <main class="device-list">
-        <a class="device-list__add-button button" href="{{ href('/devices/add') }}">Add new Device</a>
-        </br>
+
         <article class="device-list__items">
             {% for device in devices %}
                 <section class="device-list__item">
