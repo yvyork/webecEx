@@ -8,7 +8,7 @@
 {% macro select(form, label, name, options, selectedOptions, multiple, _context) %}
     {% set fieldId = form + '-' + name %}
 
-<div class="form__field">
+<main class="form__field">
     <label class="form__label" for="{{ fieldId }}">{{ label }}</label>
     <select class="form__select{% if hasFieldErrors(form, name) %} form__select--error{% endif %}{% if multiple %} form__select--multiple{% endif %}"
             id="{{ fieldId }}"
@@ -28,5 +28,5 @@
     {% for error in getFieldErrors(form, name) %}
         <p class="form__error">{{ error }}</p>
     {% endfor %}
-</div>
+</main>
 {% endmacro %}

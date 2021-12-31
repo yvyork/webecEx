@@ -10,27 +10,21 @@
         <p>Results for: "{{ search }}"</p>
     {% endif %}
 
-    <div class="location-list">
-        <div class="location-list__items">
+    <main class="location-list">
+        <article class="location-list__items">
             {% for location in locations %}
-                <div class="location-list__item">
+                <section class="location-list__item">
                     <h2 class="location-list__heading heading heading--size-3">
                         <a href="{{ href('/locations/' + location.id) }}" class="link">{{ location.buildingName + " " + location.roomName}}</a>
-                        <!--p class="location-list__streetAndNumber">
-                            {{"Location ID: " + location.id +
-                            ", Streed/Number: " + location.streetAndNumber +
-                            ", ZIP/City: " + location.zipCity}}
-                        </p-->
-                        <!--p class="location-detail__buildingName"> {{ "Building: " + location.buildingName}}</p-->
-                        <!--p class="location-detail__roomName"> {{ "Room: " + location.roomName}}</p-->
-                        <p class="location-detail__streetAndNumber"> {{ "Street/Number: " + location.streetAndNumber}}</p>
-                        <p class="location-detail__zipAndCity"> {{ "ZIP/City: " + location.zipCity}}</p>
+
                     </h2>
-                </div>
+                    <p class="location-detail__streetAndNumber"> {{ "Street/Number: " + location.streetAndNumber}}</p>
+                    <p class="location-detail__zipAndCity"> {{ "ZIP/City: " + location.zipCity}}</p>
+                </section>
             {% endfor %}
-        </div>
+        </article>
         <form action="{{ href('/locations/add') }}" method="get" class="location-list__add-button">
             <input type="submit" value="Add new Location" class="button">
         </form>
-    </div>
+    </main>
 {% endblock %}

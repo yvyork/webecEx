@@ -1,5 +1,6 @@
 package ch.fhnw.webec.exercise.controller;
 
+import ch.fhnw.webec.exercise.model.Location;
 import ch.fhnw.webec.exercise.model.Status;
 import ch.fhnw.webec.exercise.repository.StatusRepository;
 import com.mitchellbosecke.pebble.boot.autoconfigure.PebbleAutoConfiguration;
@@ -15,6 +16,7 @@ import java.util.Arrays;
 import java.util.Optional;
 
 import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.not;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -59,6 +61,23 @@ public class StatusControllerIntegrationTest {
                 .andExpect(content().string(containsString("assigned")))
                 .andExpect(content().string(containsString("3")))
                 .andExpect(content().string(containsString("broken")));
+        verify(this.statusRepository, times(1)).findBySearch("");
+    }
+
+    @Test
+    public void testIndexAbbreviateDescription() throws Exception {
+        // given
+        when(this.statusRepository.findBySearch("")).thenReturn(Arrays.asList(
+                new Status("new"),
+                new Status("assigned"),
+                new Status("broken")
+        ));
+
+        // then
+        this.mockMvc.perform(get("/statuses"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("assig")))
+                .andExpect(content().string(not(containsString("THE END"))));
         verify(this.statusRepository, times(1)).findBySearch("");
     }
 

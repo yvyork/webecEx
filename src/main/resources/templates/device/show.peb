@@ -11,7 +11,7 @@
 {% block deviceName %}{{ device.deviceName }}{% endblock %}
 
     {% block content %}
-        <section class="device-detail">
+        <main class="device-detail">
             <h2 class="heading heading--size-2">{{ device.model }}</h2>
             <p class="device-detail_manufacturer">{{ "Manufacturer: " + device.manufacturer }}</p>
             <p class="device-detail_serialNumber">{{ "Serial Number: " + device.serialNumber }}</p>
@@ -23,14 +23,17 @@
             <p class="device-detail_status">{{ "Status: " + device.status.getLabel }}</p>
 
 
-            <div class="device-detail__buttons">
+            <article class="device-detail__buttons">
                 <form action="{{ href('/devices/' + device.Id + '/edit') }}" method="get" class="device-detail__edit-form">
                     <input type="submit" value="Edit" class="button">
                 </form>
                 <form action="{{ href('/devices/' + device.Id + '/delete') }}" method="post" class="device-detail__delte-form">
                     <input type="submit" value="Delete" class="button">
                 </form>
-            </div>
-        </section>
+                <form action="{{ href('/devices/') }}" method="get" class="location-detail__back-form">
+                    <input type="submit" value="Back" class="button">
+                </form>
+            </article>
+        </main>
     {% endblock %}
 

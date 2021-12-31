@@ -41,34 +41,51 @@ public class LocationControllerIntegrationTest {
     public void textIndexWithLocations() throws Exception {
         // given
         when(this.locationRepository.findBySearch("")).thenReturn(Arrays.asList(
-                new Location("Nordflügel","EG01","Musterstrasse 1", "3000 Bern"),
-                new Location("Ostflügel","EG01","Musterstrasse 2", "3000 Bern"),
-                new Location("Südflügel","EG01","Musterstrasse 3", "3000 Bern"),
-                new Location("Westflügel","EG01","Musterstrasse 4", "3000 Bern")
+                new Location("Nordfluegel","EG01","Musterstrasse 1", "3000 Bern"),
+                new Location("Ostfluegel","EG01","Musterstrasse 2", "3000 Bern"),
+                new Location("Suedfluegel","EG01","Musterstrasse 3", "3000 Bern"),
+                new Location("Westfluegel","EG01","Musterstrasse 4", "3000 Bern")
         ));
 
         // then
         this.mockMvc.perform(get("/locations/"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("List of Locations")))
-                .andExpect(content().string(containsString("Nordflügel")))
+                .andExpect(content().string(containsString("Nordfluegel")))
                 .andExpect(content().string(containsString("EG01")))
                 .andExpect(content().string(containsString("Musterstrasse 1")))
                 .andExpect(content().string(containsString("3000 Bern")))
-                .andExpect(content().string(containsString("Ostflügel")));
+                .andExpect(content().string(containsString("Ostfluegel")));
         verify(this.locationRepository, times(1)).findBySearch("");
     }
 
     @Test
-    //TODO: search functionality is not yet implemented
+    public void testIndexAbbreviateDescription() throws Exception {
+        // given
+        when(this.locationRepository.findBySearch("")).thenReturn(Arrays.asList(
+                new Location("Nordfluegel","EG01","Musterstrasse 1", "3000 Bern")
+        ));
+
+        // then
+        this.mockMvc.perform(get("/locations"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("Nord")))
+                .andExpect(content().string(containsString("EG01")))
+                .andExpect(content().string(containsString("Musterstrasse")))
+                .andExpect(content().string(containsString("Bern")))
+                .andExpect(content().string(not(containsString("THE END"))));
+        verify(this.locationRepository, times(1)).findBySearch("");
+    }
+
+    @Test
     public void testSearch() throws Exception {
         // given
-        var search = "dfl";
+        var search = "n";
 
         // then
         this.mockMvc.perform(get("/locations/?search={search}", search))
-            .andExpect(status().isOk());
-            //.andExpect(content().string(containsString(search)));
+            .andExpect(status().isOk())
+            .andExpect(content().string(containsString(search)));
 
         verify(this.locationRepository, times(1)).findBySearch(search);
         verify(this.locationRepository, never()).findAll();
@@ -92,7 +109,7 @@ public class LocationControllerIntegrationTest {
     public void testShowLocation() throws Exception {
         // given
         var id = 1;
-        var location = new Location("Nordflügel","EG01","Musterstrasse 1", "3000 Bern");
+        var location = new Location("Nordfluegel","EG01","Musterstrasse 1", "3000 Bern");
 
         // when
         when(this.locationRepository.findById(id)).thenReturn(Optional.of(location));
@@ -100,7 +117,7 @@ public class LocationControllerIntegrationTest {
         // then
         this.mockMvc.perform(get("/locations/{id}/", id))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("Nordflügel")))
+                .andExpect(content().string(containsString("Nordfluegel")))
                 .andExpect(content().string(containsString("Musterstrasse 1")));
 
         verify(this.locationRepository, times(1)).findById(id);
@@ -110,7 +127,7 @@ public class LocationControllerIntegrationTest {
     public void testAddOrEditLocation() throws Exception {
         // given
         var id = 1;
-        var location = new Location("Nordflügel","EG01","Musterstrasse 1", "3000 Bern");
+        var location = new Location("Nordfluegel","EG01","Musterstrasse 1", "3000 Bern");
 
         // when
         when(this.locationRepository.findById(id)).thenReturn(Optional.of(location));
@@ -118,7 +135,7 @@ public class LocationControllerIntegrationTest {
         // then
         this.mockMvc.perform(get("/locations/{id}/edit?", id))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("Nordflügel")))
+                .andExpect(content().string(containsString("Nordfluegel")))
                 .andExpect(content().string(containsString("Musterstrasse 1")));
 
         verify(this.locationRepository, times(1)).findById(id);
@@ -128,7 +145,7 @@ public class LocationControllerIntegrationTest {
     public void testDeleteLocation() throws Exception {
         // given
         var id = 1;
-        var location = new Location("Nordflügel","EG01","Musterstrasse 1", "3000 Bern");
+        var location = new Location("Nordfluegel","EG01","Musterstrasse 1", "3000 Bern");
 
         // when
         when(this.locationRepository.findById(id)).thenReturn(Optional.of(location));

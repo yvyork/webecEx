@@ -28,13 +28,13 @@ abstract public class AbstractPage {
 
         return new AddOrEditDevicePage(this.webDriver, this.port);
     }
-//
-//    public AddOrEditDevicePage goToEditDevicePage(int deviceId) {
-//        this.webDriver.navigate().to(this.getUriBuilder()
-//            .path("/devices/" + deviceId + "/edit").build().toString());
-//
-//        return new AddOrEditDevicePage(this.webDriver, this.port);
-//    }
+
+    public AddOrEditDevicePage goToEditDevicePage(int deviceId) {
+        this.webDriver.navigate().to(this.getUriBuilder()
+            .path("/devices/" + deviceId + "/edit").build().toString());
+
+        return new AddOrEditDevicePage(this.webDriver, this.port);
+    }
 
     public IndexPage goToIndexPage() {
         this.webDriver.navigate().to(this.getUriBuilder()
