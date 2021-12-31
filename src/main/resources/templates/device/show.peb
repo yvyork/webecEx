@@ -30,7 +30,7 @@
                 <form action="{{ href('/devices/' + device.Id + '/delete') }}" method="post" class="device-detail__delte-form">
                     <input type="submit" value="Delete" class="button">
                 </form>
-                <form action="{{ href('/devices/') }}" method="get" class="location-detail__back-form">
+                <form action="{{ href('/') }}" method="get" class="location-detail__back-form">
                     <input type="submit" value="Back" class="button">
                 </form>
             </article>
