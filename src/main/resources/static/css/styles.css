@@ -13,6 +13,12 @@
     --border-radius: var(--base-space-small);
     --font-family-sans-serif:'Open Sans', sans-serif;;
     --font-family-serif: 'Playfair Display', serif;
+
+    /* stuff to test */
+    --royalblue-color: #244d6d;
+    --paleyellow-color: #f0eeb8;
+    --lightblue-color:#ADD8E6;
+    --darkblue-color: #071c08;
 }
 
 
@@ -50,11 +56,9 @@ body {
     background: var(--background-color);
     padding: var(--base-space);
     border-radius: var(--border-radius);
-    /*border: 1px solid var(--secondary-color);*/
     display: flex;
     flex-direction: column;
     gap: var(--base-space-small);
-    /*box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;*/
     box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 
 }
@@ -79,7 +83,7 @@ body {
 /** Header */
 .header {
     padding: var(--base-space) 0;
-    background: var(--secondary-color);
+    background: var(--royalblue-color);
 }
 
 .header__container {
@@ -153,11 +157,15 @@ body {
     }
 }
 
+.link {
+    text-decoration: none;
+}
+
 /*dropdown*/
 
 .dropbtn {
-    background-color: #071c08;
-    color: white;
+    background-color: black;
+    color: #f8f7f5;
     padding: 10px 24px;
     font-size: 16px;
     border: none;
@@ -223,7 +231,7 @@ body {
 .device-detail__edit-form {
     float: left;
     padding: 15px;
-    
+
 }
 
 .device-detail__delete-form {
@@ -248,7 +256,11 @@ body {
 }
 
 .form__input {
-    border: none;
     border-radius: 8px;
-
+    border: 1px solid #555;
 }
+
+/*.headingstyle {*/
+/*    background-color: var(--royalblue-color);*/
+/*    border-radius: 8px;*/
+/*}*/
