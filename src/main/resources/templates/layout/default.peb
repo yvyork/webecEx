@@ -1,3 +1,5 @@
+{% import "form/csrf" %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,12 +32,27 @@
                     </div>
             </div>
 
-             <form action="/" method="get" class="header__search">
+            <form action="/" method="get" class="header__search">
                 {# @pebvariable name="search" type="java.lang.String" #}
                 <input class="header__input" type="text" name="search" value="{{ search }}"
                 placeholder="Look for a Device" />
                 <input class="header__submit" type="submit" value="Search" />
             </form>
+
+            <nav>
+                {% if request.userPrincipal is not null %}
+
+                    <form action="{{ href('/logout') }}" method="post" class="header__logout-form">
+                        {{ csrf(_csrf) }}
+                            <input type="submit" value="Logout" class="link link--header header__logout-form-submit">
+                    </form>
+
+                {% else %}
+                    <form action="{{ href('/login') }}" method="post" class="header__login-form">
+                        <input type="submit" value="Login" class="link link--header header__login-form-submit">
+                    <!--a href="{{ href('/login') }}" class="link link--header">Login</a-->
+                {% endif %}
+            </nav>
 
         </main>
     </header>

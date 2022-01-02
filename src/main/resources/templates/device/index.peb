@@ -1,7 +1,8 @@
 {# @pebvariable name="devices" type="java.util.List<ch.fhnw.webec.exercise.model.Device>" #}
 {# @pebvariable name="search" type="java.lang.String" #}
+{# @pebvariable name="request" type="org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper" #}
 
-    {% extends "layout/default" %}
+{% extends "layout/default" %}
 
 {% block content %}
     <h1 class="heading heading--size-1">List of Devices</h1>
@@ -11,6 +12,9 @@
     {% endif %}
 
     <main class="device-list">
+        {% if request.isUserInRole('ADMIN') %}
+            <a class="device-list__add-button button" href="{{ href('/devices/add') }}">Add new device</a>
+        {% endif %}
 
         <article class="device-list__items">
             {% for device in devices %}
