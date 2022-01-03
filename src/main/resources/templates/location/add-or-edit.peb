@@ -5,6 +5,7 @@
 
     {% import "form/input" %}
     {% import "form/select" %}
+    {% import "form/csrf" %}
     {% import "form/submit" %}
 
 {% block content %}
@@ -13,6 +14,7 @@
         {{ input("location", "Room Name", "roomName", "text", location.roomName, _context) }}
         {{ input("location", "Street and Number", "streetAndNumber", "text", location.streetAndNumber, _context) }}
         {{ input("location", "Zip and City", "zipCity", "text", location.zipCity, _context) }}
+        {{ csrf(_csrf) }}
         {{ submit("Save") }}
     </form>
 {% endblock %}

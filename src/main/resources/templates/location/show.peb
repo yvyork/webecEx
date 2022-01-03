@@ -5,6 +5,7 @@
 
 {% import "form/input" %}
 {% import "form/select" %}
+{% import "form/csrf" %}
 {% import "form/submit" %}
 
 {% block buildingName %}{{ location.buildingName }}{% endblock %}
@@ -18,12 +19,15 @@
 
     <section class="location-detail__buttons">
         <form action="{{ href('/locations/' + location.id + '/edit') }}" method="get" class="location-detail__edit-form">
+            {{ csrf(_csrf) }}
             <input type="submit" value="Edit" class="button">
         </form>
         <form action="{{ href('/locations/' + location.id + '/delete') }}" method="post" class="location-detail__delete-form">
+            {{ csrf(_csrf) }}
             <input type="submit" value="Delete" class="button">
         </form>
         <form action="{{ href('/locations/') }}" method="get" class="location-detail__back-form">
+            {{ csrf(_csrf) }}
             <input type="submit" value="Back" class="button">
         </form>
     </section>
