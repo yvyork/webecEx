@@ -18,4 +18,12 @@ public interface LocationRepository extends JpaRepository<Location, Integer> {
             OR LOWER(location.zipCity) LIKE LOWER(CONCAT('%', :search, '%'))
     """)
     List<Location> findBySearch(@Param("search") String search);
+
+    @Query("""
+        SELECT COUNT(location)
+        FROM Location location
+        INNER JOIN Device device ON location.Id = device.location.Id
+        WHERE location.Id = :id
+    """)
+    int findDependendDevices(@Param("id") int id);
 }

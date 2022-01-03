@@ -12,35 +12,37 @@
 </head>
 <body>
     <header class="header">
-        <div class="header__container container">
-            <a href="{{ href('/') }}" class="header__logo">
-                <!--span class="header__icon material-icons">menu_device</span-->
-                <!--span class="header__text">Devicelist</span-->
-                <p><a href="{{ href('/') }}" class="link">List of Devices</a></p>
-                <p><a href="{{ href('/locations/') }}" class="link">List of Locations</a></p>
-                <p><a href="{{ href('/statuses/') }}" class="link">List of Status</a></p>
-            </a>
-            <form action="/" method="get" class="header__search">
+        <main class="header__container container">
+            <div class="dropdown">
+                <button class="dropbtn">Navigation</button>
+                    <div class="dropdown-content">
+                            <a href="{{ href('/') }}" class="link">List of Devices</a>
+                            <a href="{{ href('/locations/') }}" class="link">List of Locations</a>
+                            <a href="{{ href('/about/') }}" class="link">About</a>
+                    </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropbtn">Add</button>
+                    <div class="dropdown-content">
+                            <a href="{{ href('/devices/add') }}" class="link">Device</a>
+                            <a href="{{ href('/locations/add') }}" class="link">Locations</a>
+                    </div>
+            </div>
+
+             <form action="/" method="get" class="header__search">
                 {# @pebvariable name="search" type="java.lang.String" #}
-                <input class="header__input" type="text" name="search" value="{{ search }}" placeholder="search" />
+                <input class="header__input" type="text" name="search" value="{{ search }}"
+                placeholder="Look for a Device" />
                 <input class="header__submit" type="submit" value="Search" />
             </form>
-            <!--form action="/locations" method="get" class="header__search">
-                {# @pebvariable name="search" type="java.lang.String" #}
-                <input class="header__input" type="text" name="search" value="{{ search }}" placeholder="Location search" />
-                <input class="header__submit" type="submit" value="Search" />
-            </form-->
-            <!--form action="/statuses" method="get" class="header__search">
-                {# @pebvariable name="search" type="java.lang.String" #}
-                <input class="header__input" type="text" name="search" value="{{ search }}" placeholder="Status search" />
-                <input class="header__submit" type="submit" value="Search" />
-            </form-->
-        </div>
+
+        </main>
     </header>
     <main class="main">
-        <div class="main__container container">
+        <section class="main__container container">
             {% block content %}{% endblock %}
-        </div>
+        </section>
     </main>
 </body>
 </html>

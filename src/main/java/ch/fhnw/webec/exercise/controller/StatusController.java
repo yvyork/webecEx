@@ -3,6 +3,7 @@ package ch.fhnw.webec.exercise.controller;
 import ch.fhnw.webec.exercise.model.Status;
 import ch.fhnw.webec.exercise.repository.StatusRepository;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.validation.Valid;
 import java.util.Optional;
 
+@PreAuthorize("hasRole('ADMIN')")
 @Controller
 public class StatusController {
     private final StatusRepository statusRepository;

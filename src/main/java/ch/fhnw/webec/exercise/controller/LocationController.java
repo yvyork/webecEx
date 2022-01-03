@@ -3,6 +3,7 @@ package ch.fhnw.webec.exercise.controller;
 import ch.fhnw.webec.exercise.model.Location;
 import ch.fhnw.webec.exercise.repository.LocationRepository;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.validation.Valid;
 import java.util.Optional;
 
+@PreAuthorize("hasRole('ADMIN')")
 @Controller
 public class LocationController {
     private final LocationRepository locationRepository;
@@ -70,7 +72,11 @@ public class LocationController {
 
     @RequestMapping(path = "/locations/{id}/delete", method = RequestMethod.POST)
     public String deleteLocation(@PathVariable int id) {
-        this.locationRepository.delete(this.locationRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
-        return "redirect:/locations/";
+        if (locationRepository.findDependendDevices(id) > 0) {
+            return "error/dependentLocation";
+        } else {
+            this.locationRepository.delete(this.locationRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
+            return "redirect:/locations/";
+        }
     }
 }

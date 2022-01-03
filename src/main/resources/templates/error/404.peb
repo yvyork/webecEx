@@ -5,4 +5,9 @@
 {% block content %}
     <h1 class="heading heading--size-1">Error 404</h1>
     <p>Sorry, the requested page could not be found!</p>
+    <article class="device-detail__buttons">
+        <form action="{{ href('/') }}" method="get" class="location-detail__back-form">
+            <input type="submit" value="Back" class="button">
+        </form>
+    </article>
 {% endblock %}

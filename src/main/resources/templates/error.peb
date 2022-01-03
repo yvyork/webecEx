@@ -5,4 +5,9 @@
 {% block content %}
     <h1 class="heading heading--size-1">Oops, an error occurred!</h1>
     <p>Crap, sorry for the inconvenience, an unexpected error occurred.</p>
+    <article class="device-detail__buttons">
+        <form action="{{ href('/') }}" method="get" class="location-detail__back-form">
+            <input type="submit" value="Back" class="button">
+        </form>
+    </article>
 {% endblock %}

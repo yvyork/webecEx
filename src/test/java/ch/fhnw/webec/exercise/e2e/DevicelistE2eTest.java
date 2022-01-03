@@ -3,9 +3,12 @@ package ch.fhnw.webec.exercise.e2e;
 import ch.fhnw.webec.exercise.e2e.page.AddOrEditDevicePage;
 import ch.fhnw.webec.exercise.e2e.page.IndexPage;
 import ch.fhnw.webec.exercise.e2e.page.ShowDevicePage;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
@@ -43,7 +46,7 @@ public class DevicelistE2eTest {
         this.indexPage.doSearch("MacBook Air");
 
         assertEquals(3, this.indexPage.getDeviceTitles().size());
-//        assertTrue(this.indexPage.getDeviceTitles().contains("MacBook Air"));
+        assertTrue(this.indexPage.getDeviceTitles().contains("MacBook Air"));
     }
 
     @Test
@@ -55,7 +58,7 @@ public class DevicelistE2eTest {
         this.indexPage.doSearch("Nord");
 
         assertEquals(2, this.indexPage.getDeviceTitles().size());
-//        assertTrue(this.indexPage.getDeviceTitles().contains("MacBook Air"));
+        assertTrue(this.indexPage.getDeviceTitles().contains("MacBook Air"));
     }
 
     @Test
@@ -66,22 +69,22 @@ public class DevicelistE2eTest {
 
         this.indexPage.doSearch("new");
         assertEquals(2, this.indexPage.getDeviceTitles().size());
-        //        assertTrue(this.indexPage.getDeviceTitles().contains("MacBook Air"));
+        assertTrue(this.indexPage.getDeviceTitles().contains("MacBook Air"));
     }
 
     @Test
     public void testShowDevice() {
         var showDevicePage = this.indexPage.goToShowDevicePage(1);
 
-        assertEquals("Model: MacBook Air", showDevicePage.getHeading());
+        assertEquals("MacBook Air", showDevicePage.getHeading());
         assertEquals("Manufacturer: Apple", showDevicePage.getManufacturer());
         assertEquals("Serial Number: ABC", showDevicePage.getSerialNumber());
-        //assertEquals("Display Size: 13\"", showDevicePage.getDisplaySize());
-        //assertEquals("Processor: Intel Chip", showDevicePage.getProcessor());
-        //assertEquals("Memory: 16GB", showDevicePage.getMemory());
-        //assertEquals("Purchase Date: 2008-01-01", showDevicePage.getPurchasedDate());
-       //assertTrue(showDevicePage.getLocationNames().contains("Nordflügel"));
-        //assertTrue(showDevicePage.getStatusNames().contains("new"));
+        assertEquals("Display Size: 13\"", showDevicePage.getDisplaySize());
+        assertEquals("Processor: Intel Chip", showDevicePage.getProcessor());
+        assertEquals("Memory: 16GB", showDevicePage.getMemory());
+        assertEquals("Purchase Date: 2008-01-01", showDevicePage.getPurchasedDate());
+        assertEquals("Location: Nordfluegel EG01", showDevicePage.getLocation());
+        assertEquals("Status: new", showDevicePage.getStatus());
     }
 
     @Test
@@ -94,7 +97,13 @@ public class DevicelistE2eTest {
         this.indexPage.doSearch("MacBook Air next generation");
 
         if (abstractPage instanceof ShowDevicePage showDevicePage) {
-            assertEquals("Serialnumber: XYZ, Display size: 13\", Processor: M1, Memory: 16GB, Purchase date: 2022-01-01", showDevicePage.getDeviceInformationElement());
+            assertEquals("Serial Number: XYZ", showDevicePage.getSerialNumber());
+            assertEquals("Display Size: 13\"", showDevicePage.getDisplaySize());
+            assertEquals("Processor: M1", showDevicePage.getProcessor());
+            assertEquals("Memory: 16GB", showDevicePage.getMemory());
+            assertEquals("Purchase Date: 2022-01-01", showDevicePage.getPurchasedDate());
+            assertEquals("Location: Suedfluegel EG01", showDevicePage.getLocation());
+            assertEquals("Status: new", showDevicePage.getStatus());
         } else {
             fail();
         }
@@ -112,5 +121,71 @@ public class DevicelistE2eTest {
         } else {
             fail();
         }
+    }
+
+    @Test
+    @DirtiesContext
+    public void testEditDeviceModel() {
+        var showDevicePage = this.indexPage.goToShowDevicePage(1);
+        assertEquals("MacBook Air", showDevicePage.getHeading());
+        assertEquals("Manufacturer: Apple", showDevicePage.getManufacturer());
+        assertEquals("Serial Number: ABC", showDevicePage.getSerialNumber());
+        assertEquals("Display Size: 13\"", showDevicePage.getDisplaySize());
+        assertEquals("Processor: Intel Chip", showDevicePage.getProcessor());
+        assertEquals("Memory: 16GB", showDevicePage.getMemory());
+        assertEquals("Purchase Date: 2008-01-01", showDevicePage.getPurchasedDate());
+        assertEquals("Location: Nordfluegel EG01", showDevicePage.getLocation());
+        assertEquals("Status: new", showDevicePage.getStatus());
+
+        var editDevicePage = showDevicePage.goToEditDevicePage(1);
+
+        editDevicePage.setSerialNumber("DEF");
+        editDevicePage.setModel("MacBook Air next generation");
+        editDevicePage.setMemory("32GB");
+        editDevicePage.setManufacturer("Apple++");
+        editDevicePage.setDisplaySize("14\"");
+        editDevicePage.setProcessor("M2");
+        editDevicePage.setPurchaseDate("2022-01-01");
+        var abstractPage = editDevicePage.submitForm();
+
+        if (abstractPage instanceof ShowDevicePage showDevicePageEdited) {
+            assertEquals("MacBook Air next generation", showDevicePageEdited.getModel());
+            assertEquals("Manufacturer: Apple++", showDevicePageEdited.getManufacturer());
+            assertEquals("Serial Number: DEF", showDevicePageEdited.getSerialNumber());
+            assertEquals("Display Size: 14\"", showDevicePageEdited.getDisplaySize());
+            assertEquals("Processor: M2", showDevicePageEdited.getProcessor());
+            assertEquals("Memory: 32GB", showDevicePageEdited.getMemory());
+            assertEquals("Purchase Date: 2022-01-01", showDevicePageEdited.getPurchasedDate());
+        } else {
+            fail();
+        }
+    }
+
+    @Test
+    @DirtiesContext
+    public void testDeleteDevice() {
+        if (this.webDriver instanceof HtmlUnitDriver) {
+            return;
+        }
+
+        var indexPage = this.indexPage.goToIndexPage();
+        assertTrue(indexPage.getDeviceTitles().contains("MacBook SuperMegaGeil"));
+
+        var showDevicePage = this.indexPage.goToShowDevicePage(2);
+        assertEquals("MacBook SuperMegaGeil", showDevicePage.getHeading());
+
+        var abstractPage = showDevicePage.deleteDevice();
+
+        if (abstractPage instanceof IndexPage indexPageEdited) {
+            assertFalse(indexPageEdited.getDeviceTitles().contains("MacBook SuperMegaGeil"));
+        } else {
+            fail();
+        }
+
+    }
+
+    @AfterEach
+    public void tearDown() {
+        this.webDriver.quit();
     }
 }

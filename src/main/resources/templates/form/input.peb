@@ -7,7 +7,7 @@
 {% macro input(form, label, name, type, value, _context) %}
     {% set fieldId = form + '-' + name %}
 
-    <div class="form__field form__field-{{ fieldId }}">
+    <main class="form__field form__field-{{ fieldId }}">
         <label class="form__label" for="{{ fieldId }}">{{ label }}</label>
 
         {% if type == "textarea" %}
@@ -25,5 +25,5 @@
         {% for error in getFieldErrors(form, name) %}
             <p class="form__error">{{ error }}</p>
         {% endfor %}
-    </div>
+    </main>
 {% endmacro %}

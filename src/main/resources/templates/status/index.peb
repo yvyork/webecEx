@@ -10,22 +10,21 @@
         <p>Results for: "{{ search }}"</p>
     {% endif %}
 
-    <div class="status-list">
-        <div class="status-list__items">
+    <main class="status-list">
+        <article class="status-list__items">
             {% for status in statuses %}
-                <div class="status-list__item">
+                <section class="status-list__item">
                     <h2 class="status-list__heading heading heading--size-3">
                         <a href="{{ href('/statuses/' + status.id) }}" class="link">{{ status.Name}}</a>
-                        <p class="status-list__name">
-                            {{"Status ID: " + status.id +
-                            ", Name: " + status.name }}
-                        </p>
                     </h2>
-                </div>
+                    <p class="status-list__name">
+                            {{"Status ID: " + status.id + ", Name: " + status.name }}
+                    </p>
+                </section>
             {% endfor %}
-        </div>
+        </article>
         <form action="{{ href('/statuses/add') }}" method="get" class="status-list__add-button">
             <input type="submit" value="Add new Status" class="button">
         </form>
-    </div>
+    </main>
 {% endblock %}

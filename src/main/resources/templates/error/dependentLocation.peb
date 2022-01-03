@@ -1,0 +1,13 @@
+{% extends "layout/default" %}
+
+{% block title %}Dependency error{% endblock %}
+
+{% block content %}
+    <h1 class="heading heading--size-1">Dependency error</h1>
+    <p>There are dependent Devices on this Location. Please assign them to a different location.</p>
+    <article class="device-detail__buttons">
+        <form action="{{ href('/locations/') }}" method="get" class="location-detail__back-form">
+            <input type="submit" value="Back" class="button">
+        </form>
+    </article>
+{% endblock %}
