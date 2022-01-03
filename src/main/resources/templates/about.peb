@@ -40,10 +40,10 @@
         </ul>
     </section>
     <section>
-        <h3>Technical implementation</h3>
-        <h4>Model</h4>
-            <p>The model is based on three classes. One each for devices, locations and status and they are connected with two Many-to-One Connections.</p>
-        <h4>Testing</h4>
+        <h3>Model implementation</h3>
+            <p>The model is based on three classes. One each for devices, locations and status and they are connected with two Many-to-One Connections. The following image shows the UML Diagramm.</p>
+            <img src="/img/uml_v3.jpg" alt="uml v.3">
+        <h3>Testing</h3>
         <p>The functional testing were devided in three types. For <strong>Unit Tests</strong> the JUnit testing framework and Mockito for mocking dependencies was used. The <strong>Integration Tests</strong> were written for the controller and the repository classes. The Selenium Suite was used to automated Google Chrome browser for the <strong>End-to-End Tests<strong>.</p>
     </section>
 {% endblock %}

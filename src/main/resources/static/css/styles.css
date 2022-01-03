@@ -145,6 +145,19 @@ body {
     border-bottom-right-radius: var(--border-radius);
 }
 
+.header__logout-form-submit, .header__login-form-submit{
+    font-size: 1rem;
+    height: 2.5rem;
+    cursor: pointer;
+    padding: var(--base-space-small) var(--base-space);
+    margin: 0;
+    background: var(--primary-color);
+    color: var(--background-color);
+    border: 2px solid var(--primary-color);
+    border-top-right-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+}
+
 @media screen and (max-width: 800px) {
     .device-list__items {
         grid-template-columns: 1fr 1fr;
