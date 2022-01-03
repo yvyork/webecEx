@@ -3,6 +3,7 @@ package ch.fhnw.webec.exercise.controller;
 import ch.fhnw.webec.exercise.model.Location;
 import ch.fhnw.webec.exercise.model.Status;
 import ch.fhnw.webec.exercise.repository.StatusRepository;
+import ch.fhnw.webec.exercise.service.UserService;
 import com.mitchellbosecke.pebble.boot.autoconfigure.PebbleAutoConfiguration;
 import javassist.NotFoundException;
 import org.junit.jupiter.api.Test;
@@ -19,6 +20,8 @@ import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.not;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -34,10 +37,15 @@ public class StatusControllerIntegrationTest {
     @MockBean
     private StatusRepository statusRepository;
 
+    @MockBean
+    private UserService userService;
+
     @Test
     public void testIndex() throws Exception {
         // then
-        this.mockMvc.perform(get("/statuses/"))
+        this.mockMvc.perform(get("/statuses/")
+                        .with(csrf())
+                        .with(user("admin").roles("ADMIN")))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("List of Status")));
     }
@@ -52,7 +60,9 @@ public class StatusControllerIntegrationTest {
         ));
 
         // then
-        this.mockMvc.perform(get("/statuses/"))
+        this.mockMvc.perform(get("/statuses/")
+                        .with(csrf())
+                        .with(user("admin").roles("ADMIN")))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("List of Status")))
                 .andExpect(content().string(containsString("1")))
@@ -74,7 +84,9 @@ public class StatusControllerIntegrationTest {
         ));
 
         // then
-        this.mockMvc.perform(get("/statuses"))
+        this.mockMvc.perform(get("/statuses")
+                        .with(csrf())
+                        .with(user("admin").roles("ADMIN")))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("assig")))
                 .andExpect(content().string(not(containsString("THE END"))));
@@ -87,7 +99,9 @@ public class StatusControllerIntegrationTest {
         var search = "new";
 
         // then
-        this.mockMvc.perform(get("/statuses/?search={search}", search))
+        this.mockMvc.perform(get("/statuses/?search={search}", search)
+                        .with(csrf())
+                        .with(user("admin").roles("ADMIN")))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString(search)));
 
@@ -102,7 +116,9 @@ public class StatusControllerIntegrationTest {
 
         // then
         assertThrows(AssertionError.class, () ->
-        this.mockMvc.perform(get("/statuses/?search={search}", search))
+        this.mockMvc.perform(get("/statuses/?search={search}", search)
+                        .with(csrf())
+                        .with(user("admin").roles("ADMIN")))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString(search))));
 
@@ -119,7 +135,9 @@ public class StatusControllerIntegrationTest {
         when(this.statusRepository.findById(id)).thenReturn(Optional.of(status));
 
         // then
-        this.mockMvc.perform(get("/statuses/{id}/", id))
+        this.mockMvc.perform(get("/statuses/{id}/", id)
+                        .with(csrf())
+                        .with(user("admin").roles("ADMIN")))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("1")))
                 .andExpect(content().string(containsString("new")));
@@ -137,7 +155,9 @@ public class StatusControllerIntegrationTest {
         when(this.statusRepository.findById(id)).thenReturn(Optional.of(status));
 
         // then
-        this.mockMvc.perform(get("/statuses/{id}/edit?", id))
+        this.mockMvc.perform(get("/statuses/{id}/edit?", id)
+                        .with(csrf())
+                        .with(user("admin").roles("ADMIN")))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("1")))
                 .andExpect(content().string(containsString("new")));
@@ -155,7 +175,9 @@ public class StatusControllerIntegrationTest {
         when(this.statusRepository.findById(id)).thenReturn(Optional.of(status));
 
         // then
-        this.mockMvc.perform(post("/statuses/{id}/delete", id))
+        this.mockMvc.perform(post("/statuses/{id}/delete", id)
+                        .with(csrf())
+                        .with(user("admin").roles("ADMIN")))
                 .andExpect(status().is3xxRedirection());
 
         verify(this.statusRepository, times(1)).findById(id);

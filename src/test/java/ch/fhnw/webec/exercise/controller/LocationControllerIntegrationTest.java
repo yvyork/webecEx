@@ -2,6 +2,7 @@ package ch.fhnw.webec.exercise.controller;
 
 import ch.fhnw.webec.exercise.model.Location;
 import ch.fhnw.webec.exercise.repository.LocationRepository;
+import ch.fhnw.webec.exercise.service.UserService;
 import com.mitchellbosecke.pebble.boot.autoconfigure.PebbleAutoConfiguration;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ import java.util.Optional;
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -29,10 +32,15 @@ public class LocationControllerIntegrationTest {
     @MockBean
     private LocationRepository locationRepository;
 
+    @MockBean
+    private UserService userService;
+
     @Test
     public void testIndex() throws Exception {
         // then
-        this.mockMvc.perform(get("/locations/"))
+        this.mockMvc.perform(get("/locations/")
+                        .with(csrf())
+                        .with(user("admin").roles("ADMIN")))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("List of Locations")));
     }
@@ -48,7 +56,9 @@ public class LocationControllerIntegrationTest {
         ));
 
         // then
-        this.mockMvc.perform(get("/locations/"))
+        this.mockMvc.perform(get("/locations/")
+                        .with(csrf())
+                        .with(user("admin").roles("ADMIN")))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("List of Locations")))
                 .andExpect(content().string(containsString("Nordfluegel")))
@@ -67,7 +77,9 @@ public class LocationControllerIntegrationTest {
         ));
 
         // then
-        this.mockMvc.perform(get("/locations"))
+        this.mockMvc.perform(get("/locations")
+                        .with(csrf())
+                        .with(user("admin").roles("ADMIN")))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("Nord")))
                 .andExpect(content().string(containsString("EG01")))
@@ -83,7 +95,9 @@ public class LocationControllerIntegrationTest {
         var search = "n";
 
         // then
-        this.mockMvc.perform(get("/locations/?search={search}", search))
+        this.mockMvc.perform(get("/locations/?search={search}", search)
+                        .with(csrf())
+                        .with(user("admin").roles("ADMIN")))
             .andExpect(status().isOk())
             .andExpect(content().string(containsString(search)));
 
@@ -98,7 +112,9 @@ public class LocationControllerIntegrationTest {
 
         // then
         assertThrows(AssertionError.class, () ->
-                this.mockMvc.perform(get("/locations/?search={search}", search))
+                this.mockMvc.perform(get("/locations/?search={search}", search)
+                                .with(csrf())
+                                .with(user("admin").roles("ADMIN")))
                         .andExpect(status().isOk())
                         .andExpect(content().string(containsString(search))));
 
@@ -115,7 +131,9 @@ public class LocationControllerIntegrationTest {
         when(this.locationRepository.findById(id)).thenReturn(Optional.of(location));
 
         // then
-        this.mockMvc.perform(get("/locations/{id}/", id))
+        this.mockMvc.perform(get("/locations/{id}/", id)
+                        .with(csrf())
+                        .with(user("admin").roles("ADMIN")))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("Nordfluegel")))
                 .andExpect(content().string(containsString("Musterstrasse 1")));
@@ -133,7 +151,9 @@ public class LocationControllerIntegrationTest {
         when(this.locationRepository.findById(id)).thenReturn(Optional.of(location));
 
         // then
-        this.mockMvc.perform(get("/locations/{id}/edit?", id))
+        this.mockMvc.perform(get("/locations/{id}/edit?", id)
+                        .with(csrf())
+                        .with(user("admin").roles("ADMIN")))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("Nordfluegel")))
                 .andExpect(content().string(containsString("Musterstrasse 1")));
@@ -151,7 +171,9 @@ public class LocationControllerIntegrationTest {
         when(this.locationRepository.findById(id)).thenReturn(Optional.of(location));
 
         // then
-        this.mockMvc.perform(post("/locations/{id}/delete", id))
+        this.mockMvc.perform(post("/locations/{id}/delete", id)
+                        .with(csrf())
+                        .with(user("admin").roles("ADMIN")))
                 .andExpect(status().is3xxRedirection());
 
         verify(this.locationRepository, times(1)).findById(id);
