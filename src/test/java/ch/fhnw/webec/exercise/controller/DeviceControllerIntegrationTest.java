@@ -6,6 +6,7 @@ import ch.fhnw.webec.exercise.model.Location;
 import ch.fhnw.webec.exercise.repository.DeviceRepository;
 import ch.fhnw.webec.exercise.repository.LocationRepository;
 import ch.fhnw.webec.exercise.repository.StatusRepository;
+import ch.fhnw.webec.exercise.service.UserService;
 import com.mitchellbosecke.pebble.boot.autoconfigure.PebbleAutoConfiguration;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ import java.util.Optional;
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -38,6 +41,9 @@ public class DeviceControllerIntegrationTest {
 
     @MockBean
     private StatusRepository statusRepository;
+
+    @MockBean
+    private UserService userService;
 
     @Test
     public void testDeviceIndex() throws Exception {
@@ -108,7 +114,9 @@ public class DeviceControllerIntegrationTest {
 
         when(this.deviceRepository.findById(deviceId)).thenReturn(Optional.of(device));
 
-        this.mockMvc.perform(post("/devices/{id}/delete", deviceId))
+        this.mockMvc.perform(post("/devices/{id}/delete", deviceId)
+                        .with(csrf())
+                        .with(user("admin").roles("ADMIN")))
                 .andExpect(status().is3xxRedirection());
 
         verify(this.deviceRepository, times(1)).findById(deviceId);

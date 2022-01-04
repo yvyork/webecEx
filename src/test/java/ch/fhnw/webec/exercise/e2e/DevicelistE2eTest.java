@@ -90,6 +90,7 @@ public class DevicelistE2eTest {
     @Test
     @DirtiesContext
     public void testAddDevice() {
+        this.indexPage.doLogin("admin", "admin");
         var addDevicePage = this.indexPage.goToAddDevicePage();
         var abstractPage = addDevicePage.addDevice("XYZ", "MacBook Air next generation", "16GB", "Apple",
                 "13\"", "M1", "2022-01-01", List.of("Suedfluegel EG01"), List.of("new"));
@@ -111,6 +112,7 @@ public class DevicelistE2eTest {
 
     @Test
     public void testAddDeviceInvalid() {
+        this.indexPage.doLogin("admin", "admin");
         var addDevicePage = this.indexPage.goToAddDevicePage();
         var abstractPage = addDevicePage.addDevice("XYZ", "", "", "",
                 "", "", "", List.of("Suedfluegel EG01"), List.of("new"));
@@ -126,6 +128,7 @@ public class DevicelistE2eTest {
     @Test
     @DirtiesContext
     public void testEditDeviceModel() {
+        this.indexPage.doLogin("admin", "admin");
         var showDevicePage = this.indexPage.goToShowDevicePage(1);
         assertEquals("MacBook Air", showDevicePage.getHeading());
         assertEquals("Manufacturer: Apple", showDevicePage.getManufacturer());
@@ -168,6 +171,7 @@ public class DevicelistE2eTest {
             return;
         }
 
+        this.indexPage.doLogin("admin", "admin");
         var indexPage = this.indexPage.goToIndexPage();
         assertTrue(indexPage.getDeviceTitles().contains("MacBook SuperMegaGeil"));
 

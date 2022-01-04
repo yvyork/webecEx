@@ -4,6 +4,7 @@
 
 {% import "form/input" %}
 {% import "form/select" %}
+{% import "form/csrf" %}
 {% import "form/submit" %}
 {# {% import "device/macro/locationList.peb" %} #}
 
@@ -25,10 +26,12 @@
             {% if request.isUserInRole('ADMIN') %}
                 <article class="device-detail__buttons">
                     <form action="{{ href('/devices/' + device.Id + '/edit') }}" method="get" class="device-detail__edit-form">
+                        {{ csrf(_csrf) }}
                         <input type="submit" value="Edit" class="button">
                     </form>
                     <form action="{{ href('/devices/' + device.Id + '/delete') }}" method="post"
                     class="device-detail__delete-form">
+                        {{ csrf(_csrf) }}
                         <input type="submit" value="Delete" class="button">
                     </form>
                 </article>

@@ -17,6 +17,10 @@ abstract public class AbstractPage {
         PageFactory.initElements(webDriver, this);
     }
 
+    public AbstractPage doLogin(String username, String password) {
+        return this.goToLoginPage().doLogin(username, password);
+    }
+
     public void doSearch(String search) {
         this.webDriver.navigate().to(this.getUriBuilder()
             .queryParam("search", search).build().toString());
@@ -48,6 +52,12 @@ abstract public class AbstractPage {
             .path("/devices/" + deviceId).build().toString());
 
         return new ShowDevicePage(this.webDriver, this.port);
+    }
+
+    public LoginPage goToLoginPage() {
+        this.webDriver.navigate().to(this.getUriBuilder().path("/login").build().toString());
+
+        return new LoginPage(this.webDriver, this.port);
     }
 
     public UriBuilder getUriBuilder() {
