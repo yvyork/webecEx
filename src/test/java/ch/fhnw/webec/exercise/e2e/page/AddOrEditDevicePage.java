@@ -37,7 +37,7 @@ public class AddOrEditDevicePage  extends AbstractPage {
     @FindBy(id = "device-status")
     private WebElement statusInputElement;
 
-    @FindBy(css = "[value=\"Save\"]")
+    @FindBy(css = "input.subbutton")
     private WebElement submitButtonElement;
 
     public AddOrEditDevicePage(WebDriver webDriver, int port) {
@@ -98,7 +98,7 @@ public class AddOrEditDevicePage  extends AbstractPage {
     public void setLocations(List<String> locations) {
         var locationsSelect = new Select(this.locationsInputElement);
 
-        locationsSelect.deselectAll();
+        //locationsSelect.deselectAll();
 
         for (var location : locations) {
             locationsSelect.selectByVisibleText(location);
@@ -108,7 +108,7 @@ public class AddOrEditDevicePage  extends AbstractPage {
     public void setStatus(List<String> statuses) {
         var statusSelect = new Select(this.statusInputElement);
 
-        statusSelect.deselectAll();
+        //statusSelect.deselectAll();
 
         for (var status : statuses) {
             statusSelect.selectByVisibleText(status);
