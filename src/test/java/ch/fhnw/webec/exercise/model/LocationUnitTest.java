@@ -71,7 +71,7 @@ public class LocationUnitTest {
     }
 
     @Test
-    public void testGetLasbel() {
+    public void testGetLabel() {
         // given
         // when
         location.setBuildingName("Nordflügel");
