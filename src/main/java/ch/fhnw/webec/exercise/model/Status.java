@@ -78,4 +78,9 @@ public class Status implements SelectOption {
     public String getLabel() {
         return getName();
     }
+
+    @Override
+    public String toString() {
+        return getName();
+    }
 }

@@ -40,9 +40,9 @@ public class Location implements SelectOption {
     @OneToMany(mappedBy = "location")
     private List<Device> devices = new ArrayList<>();
 
-    public Location(){}
+    public Location() {}
 
-    public Location(String buildingName, String roomName, String streetAndNumber, String zipCity){
+    public Location(String buildingName, String roomName, String streetAndNumber, String zipCity) {
         this();
         this.buildingName = buildingName;
         this.roomName = roomName;
@@ -98,7 +98,7 @@ public class Location implements SelectOption {
         this.devices = devices;
     }
 
-    public void addDevice(Device device){
+    public void addDevice(Device device) {
         if (device != null) {
             if (!this.getDevices().contains(device)) {
                 this.getDevices().add(device);
@@ -118,6 +118,11 @@ public class Location implements SelectOption {
 
     @Override
     public String getLabel() {
+        return getBuildingName() + " " + getRoomName();
+    }
+
+    @Override
+    public String toString() {
         return getBuildingName() + " " + getRoomName();
     }
 }
