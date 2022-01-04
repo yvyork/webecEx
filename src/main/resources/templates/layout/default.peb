@@ -50,7 +50,7 @@
                 {% else %}
                     <form action="{{ href('/login') }}" method="post" class="header__login-form">
                         <input type="submit" value="Login" class="link link--header header__login-form-submit">
-                    <!--a href="{{ href('/login') }}" class="link link--header">Login</a-->
+                    </form>
                 {% endif %}
             </nav>
 
