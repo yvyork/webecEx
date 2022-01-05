@@ -38,49 +38,13 @@ body {
 }
 
 .container {
-    max-width: 960px;
+    max-width: 1000px;
     margin: auto;
     padding: 0 var(--base-space);
 }
 
-/** Device List **/
-
-.device-list__items, .location-list__items{
-    display: grid;
-    grid-gap: var(--secondary-base-space);
-    grid-template-columns: 1fr 1fr 1fr;
-
-}
-
-.device-list__item, .location-list__item{
-    background: var(--background-color);
-    padding: var(--base-space);
-    border-radius: var(--border-radius);
-    display: flex;
-    flex-direction: column;
-    gap: var(--base-space-small);
-    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
-
-}
-
-.heading--size-1{
-    text-align: center;
-}
-
-.device-list__add-button {
-    display: inline-block;
-    padding: var(--base-space-small) var(--base-space);
-    background: var(--secondary-color);
-    color: var(--background-color);
-    font-size: 1rem;
-    line-height: inherit;
-    text-decoration: none;
-    border: none;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-}
-
 /** Header */
+
 .header {
     padding: var(--base-space) 0;
     background: var(--royalblue-color);
@@ -154,8 +118,56 @@ body {
     background: var(--primary-color);
     color: var(--background-color);
     border: 2px solid var(--primary-color);
-    border-top-right-radius: var(--border-radius);
-    border-bottom-right-radius: var(--border-radius);
+
+    border-radius: 8px;
+}
+
+
+/** Device List **/
+
+.device-list__items, .location-list__items{
+    display: grid;
+    grid-gap: var(--secondary-base-space);
+    grid-template-columns: 1fr 1fr 1fr;
+
+}
+
+.device-list__item, .location-list__item{
+    background: var(--background-color);
+    padding: var(--base-space);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    gap: var(--base-space-small);
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+
+}
+
+.heading--size-1{
+    text-align: center;
+}
+
+.device-list__add-button {
+    display: inline-block;
+    padding: var(--base-space-small) var(--base-space);
+    background: var(--secondary-color);
+    color: var(--background-color);
+    font-size: 1rem;
+    line-height: inherit;
+    text-decoration: none;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+}
+
+.device-detail__edit-form {
+    float: left;
+    padding: 15px;
+
+}
+
+.device-detail__delete-form {
+    padding: 15px;
 }
 
 @media screen and (max-width: 800px) {
@@ -170,11 +182,67 @@ body {
     }
 }
 
+/** Locations */
+
+.location-detail__edit-form {
+    float: left;
+    padding: 15px;
+}
+
+.location-detail__delete-form {
+    padding: 15px;
+}
+/*.location-detail__buttons {*/
+/*    display: inline-block;*/
+/*}*/
+
+/** Link */
+
+.link {
+    color: var(--royalblue-color);
+}
+
+.link:hover {
+    text-decoration: underline;
+    color: var(--royalblue-color);
+}
+
+
+
+/** Footer */
+.footer {
+    padding: var(--base-space);
+    background: var(--royalblue-color);
+    color: var(--background-color);
+    position: fixed;
+    bottom: 0;
+    width:100%;
+    height:60px;
+
+}
+
+.footer__container {
+    display: flex;
+    gap: var(--base-space);
+    justify-content: space-between;
+}
+
+.footer__menu {
+    list-style: none;
+    margin: 0;
+    display: flex;
+    gap: var(--base-space-small);
+}
+
+.footer__menu-item {
+    color: var(--background-color);
+}
+
 .link {
     text-decoration: none;
 }
 
-/*dropdown*/
+/** Dropdown */
 
 .dropbtn {
     background-color: black;
@@ -241,15 +309,7 @@ body {
     border-radius: 8px;
 }
 
-.device-detail__edit-form {
-    float: left;
-    padding: 15px;
 
-}
-
-.device-detail__delete-form {
-    padding: 15px;
-}
 .button {
     background-color: #071c08;
     color: white;
@@ -259,6 +319,9 @@ body {
     cursor: pointer;
     border-radius: 8px;
 }
+
+/* Form */
+
 .form__field {
     padding: 10px;
 }
@@ -272,8 +335,3 @@ body {
     border-radius: 8px;
     border: 1px solid #555;
 }
-
-/*.headingstyle {*/
-/*    background-color: var(--royalblue-color);*/
-/*    border-radius: 8px;*/
-/*}*/

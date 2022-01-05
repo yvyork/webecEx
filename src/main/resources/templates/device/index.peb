@@ -12,9 +12,9 @@
     {% endif %}
 
     <main class="device-list">
-        {% if request.isUserInRole('ADMIN') %}
-            <a class="device-list__add-button button" href="{{ href('/devices/add') }}">Add new device</a>
-        {% endif %}
+{#        {% if request.isUserInRole('ADMIN') %}#}
+{#            <a class="device-list__add-button button" href="{{ href('/devices/add') }}">Add new device</a>#}
+{#        {% endif %}#}
 
         <article class="device-list__items">
             {% for device in devices %}
