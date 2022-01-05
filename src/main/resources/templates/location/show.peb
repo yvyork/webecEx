@@ -1,14 +1,14 @@
 {# @pebvariable name="location" type="ch.fhnw.webec.exercise.model.Location" #}
 
 
-{% extends "layout/default" %}
+    {% extends "layout/default" %}
 
-{% import "form/input" %}
-{% import "form/select" %}
-{% import "form/csrf" %}
-{% import "form/submit" %}
+    {% import "form/input" %}
+    {% import "form/select" %}
+    {% import "form/csrf" %}
+    {% import "form/submit" %}
 
-{% block buildingName %}{{ location.buildingName }}{% endblock %}
+    {% block buildingName %}{{ location.buildingName }}{% endblock %}
 
 {% block content %}
 <main class="location-detail">
@@ -17,19 +17,48 @@
     <p class="location-detail__streetAndNumber">{{ "Street/Number: " + location.streetAndNumber }}</p>
     <p class="location-detail__zipCity">{{ "ZIP/City: " + location.zipCity }}</p>
 
-    <section class="location-detail__buttons">
-        <form action="{{ href('/locations/' + location.id + '/edit') }}" method="get" class="location-detail__edit-form">
-            {{ csrf(_csrf) }}
-            <input type="submit" value="Edit" class="button">
-        </form>
-        <form action="{{ href('/locations/' + location.id + '/delete') }}" method="post" class="location-detail__delete-form">
-            {{ csrf(_csrf) }}
-            <input type="submit" value="Delete" class="button">
-        </form>
-        <form action="{{ href('/locations/') }}" method="get" class="location-detail__back-form">
-            {{ csrf(_csrf) }}
-            <input type="submit" value="Back" class="button">
-        </form>
-    </section>
+{#    <section class="location-detail__buttons">#}
+{#        <form action="{{ href('/locations/' + location.id + '/edit') }}" method="get" class="location-detail__edit-form">#}
+{#            {{ csrf(_csrf) }}#}
+{#            <input type="submit" value="Edit" class="button">#}
+{#        </form>#}
+{#        <form action="{{ href('/locations/' + location.id + '/delete') }}" method="post" class="location-detail__delete-form">#}
+{#            {{ csrf(_csrf) }}#}
+{#            <input type="submit" value="Delete" class="button">#}
+{#        </form>#}
+{#        <form action="{{ href('/locations/') }}" method="get" class="location-detail__back-form">#}
+{#            {{ csrf(_csrf) }}#}
+{#            <input type="submit" value="Back" class="button">#}
+{#        </form>#}
+{#    </section>#}
+
+{#    {% if request.isUserInRole('ADMIN') %}#}
+{#    <article class="location-detail__buttons">#}
+{#        <form action="{{ href('/locations/' + location.id + '/edit') }}" method="get" class="location-detail__edit-form">#}
+{#        {{ csrf(_csrf) }}#}
+{#        <input type="submit" value="Edit" class="button">#}
+{#        </form>#}
+{#        <form action="{{ href('/locations/' + device.Id + '/delete') }}"#}
+{#        method="post" class="location-detail__delete-form">#}
+{#            {{ csrf(_csrf) }}#}
+{#            <input type="submit" value="Delete" class="button">#}
+{#        </form>#}
+{#    </article>#}
+{#    {% endif %}#}
+    {% if request.isUserInRole('ADMIN') %}
+                <article class="location-detail__buttons">
+                    <form action="{{ href('/locations/' + location.Id + '/edit') }}" method="get"
+                    class="location-detail__edit-form">
+                        {{ csrf(_csrf) }}
+                        <input type="submit" value="Edit" class="button">
+                    </form>
+                    <form action="{{ href('/locations/' + location.Id + '/delete') }}" method="post"
+                    class="location-detail__delete-form">
+                        {{ csrf(_csrf) }}
+                        <input type="submit" value="Delete" class="button">
+                    </form>
+                </article>
+            {% endif %}
+
 </main>
 {% endblock %}
