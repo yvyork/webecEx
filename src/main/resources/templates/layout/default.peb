@@ -18,8 +18,8 @@
             <div class="dropdown">
                 <button class="dropbtn">Navigation</button>
                     <div class="dropdown-content">
-                            <a href="{{ href('/') }}" class="link">List of Devices</a>
-                            <a href="{{ href('/locations/') }}" class="link">List of Locations</a>
+                            <a href="{{ href('/') }}" class="link">Devices</a>
+                            <a href="{{ href('/locations/') }}" class="link">Locations</a>
                             <a href="{{ href('/about/') }}" class="link">About</a>
                     </div>
             </div>
@@ -28,14 +28,14 @@
                 <button class="dropbtn">Add</button>
                     <div class="dropdown-content">
                             <a href="{{ href('/devices/add') }}" class="link">Device</a>
-                            <a href="{{ href('/locations/add') }}" class="link">Locations</a>
+                            <a href="{{ href('/locations/add') }}" class="link">Location</a>
                     </div>
             </div>
 
             <form action="/" method="get" class="header__search">
                 {# @pebvariable name="search" type="java.lang.String" #}
                 <input class="header__input" type="text" name="search" value="{{ search }}"
-                placeholder="Look for a Device" />
+                placeholder="Find what you are looking for" />
                 <input class="header__submit" type="submit" value="Search" />
             </form>
 

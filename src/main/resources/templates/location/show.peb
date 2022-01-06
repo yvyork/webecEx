@@ -13,38 +13,12 @@
 {% block content %}
 <main class="location-detail">
     <h2 class="heading heading--size-2">{{ location.buildingName}}</h2>
-    <p class="location-detail_roomName">{{ "Room Name: " + location.roomName}}</p>
-    <p class="location-detail__streetAndNumber">{{ "Street/Number: " + location.streetAndNumber }}</p>
-    <p class="location-detail__zipCity">{{ "ZIP/City: " + location.zipCity }}</p>
+    <p class="location-detail_roomName"><strong>Room Name: </strong>{{location.roomName}}</p>
+    <p class="location-detail__streetAndNumber"><strong>Street/Number: </strong>{{location
+.streetAndNumber
+}}</p>
+    <p class="location-detail__zipCity"><strong>ZIP/City: </strong>{{location.zipCity }}</p>
 
-{#    <section class="location-detail__buttons">#}
-{#        <form action="{{ href('/locations/' + location.id + '/edit') }}" method="get" class="location-detail__edit-form">#}
-{#            {{ csrf(_csrf) }}#}
-{#            <input type="submit" value="Edit" class="button">#}
-{#        </form>#}
-{#        <form action="{{ href('/locations/' + location.id + '/delete') }}" method="post" class="location-detail__delete-form">#}
-{#            {{ csrf(_csrf) }}#}
-{#            <input type="submit" value="Delete" class="button">#}
-{#        </form>#}
-{#        <form action="{{ href('/locations/') }}" method="get" class="location-detail__back-form">#}
-{#            {{ csrf(_csrf) }}#}
-{#            <input type="submit" value="Back" class="button">#}
-{#        </form>#}
-{#    </section>#}
-
-{#    {% if request.isUserInRole('ADMIN') %}#}
-{#    <article class="location-detail__buttons">#}
-{#        <form action="{{ href('/locations/' + location.id + '/edit') }}" method="get" class="location-detail__edit-form">#}
-{#        {{ csrf(_csrf) }}#}
-{#        <input type="submit" value="Edit" class="button">#}
-{#        </form>#}
-{#        <form action="{{ href('/locations/' + device.Id + '/delete') }}"#}
-{#        method="post" class="location-detail__delete-form">#}
-{#            {{ csrf(_csrf) }}#}
-{#            <input type="submit" value="Delete" class="button">#}
-{#        </form>#}
-{#    </article>#}
-{#    {% endif %}#}
     {% if request.isUserInRole('ADMIN') %}
                 <article class="location-detail__buttons">
                     <form action="{{ href('/locations/' + location.Id + '/edit') }}" method="get"
