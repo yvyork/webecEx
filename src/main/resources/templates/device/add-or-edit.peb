@@ -4,7 +4,6 @@
 
 {% import "form/input" %}
 {% import "form/select" %}
-{% import "form/selectField" %}
 {% import "form/csrf" %}
 {% import "form/submit" %}
 
