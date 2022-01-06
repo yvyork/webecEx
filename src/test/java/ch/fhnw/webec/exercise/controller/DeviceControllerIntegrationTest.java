@@ -124,10 +124,4 @@ public class DeviceControllerIntegrationTest {
 
     }
 
-    // TODO: 29.12.21 TestAddDevice
-    @Test
-    public void testEditLocation() throws Exception {
-
-    }
-
 }
