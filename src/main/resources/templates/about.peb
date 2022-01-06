@@ -22,9 +22,10 @@
             <li>Purchase date</li>
         </ul>
         <p>can be entered. In addition, location and status information can be selected for the devices.</p>
-        <p>New devices can be added, the properties can be read and updated and the devices can be deleted. It is also possible to assign a new location or status to an existing device.</p>
-        <p>The locations have information like building- and room-name and address information as well. They can be created, read, updated and delete if no device depends on them.</p>
-        <p>The Status are provided with the application and have just a name field.</p>
+        <p>New <strong>devices</strong> can be added, the properties can be read and updated and the devices can be deleted. It is also possible to assign a new location or status to an existing device.</p>
+        <p>The <strong>locations</strong> have information like building- and room-name and address information as well. They can be created, read, updated and delete if no device depends on them.</p>
+        <p>The list of <strong>status</strong> are provided with the application and have just a name field. Additionally status can be inserted into the sql configuration file.</p>
+        <p>The list of devices and the properties of a device can be read anonymously. To change or edit a device you have to log into the web application. The application has a default admin account, with whom access to all pages and changes of all objects is possible. Additional accounts can be created, but there have the same rights as an anonymous access to the web application. This could be configure to a specific use case, like the right to edit a device property.</p>
     </section>
     <section>
         <h3>Technical preconditions</h3>
