@@ -37,10 +37,15 @@ body {
 
 }
 
+
 .container {
     max-width: 1000px;
     margin: auto;
     padding: 0 var(--base-space);
+}
+
+.main__container {
+    margin-bottom: 100px;
 }
 
 /** Header */
@@ -192,9 +197,7 @@ body {
 .location-detail__delete-form {
     padding: 15px;
 }
-/*.location-detail__buttons {*/
-/*    display: inline-block;*/
-/*}*/
+
 
 /** Link */
 
