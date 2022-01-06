@@ -4,7 +4,6 @@
 
 {% import "form/input" %}
 {% import "form/select" %}
-{% import "form/selectField" %}
 {% import "form/csrf" %}
 {% import "form/submit" %}
 
@@ -17,8 +16,8 @@
         {{ input("device", "Display Size", "displaySize", "text", device.displaySize, _context) }}
         {{ input("device", "Processor", "processor", "text", device.processor, _context) }}
         {{ input("device", "Purchase Date", "purchaseDate", "text", device.purchaseDate, _context) }}
-        {{ selectField("device", "Location", "device-location", location, [device.location], _context) }}
-        {{ selectField("device", "Status", "device-status", statuses, [device.status], _context) }}
+        {{ select("device", "Location", "location", location, [device.location], false, _context) }}
+        {{ select("device", "Status", "status", statuses, [device.status], false, _context) }}
         {{ csrf(_csrf) }}
         {{ submit("Save") }}
     </form>
