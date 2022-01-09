@@ -171,19 +171,6 @@ body {
     text-align: center;
 }
 
-.device-list__add-button {
-    display: inline-block;
-    padding: var(--base-space-small) var(--base-space);
-    background: var(--secondary-color);
-    color: var(--background-color);
-    font-size: 1rem;
-    line-height: inherit;
-    text-decoration: none;
-    border: none;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-}
-
 .device-detail__edit-form {
     float: left;
     padding: 15px;
