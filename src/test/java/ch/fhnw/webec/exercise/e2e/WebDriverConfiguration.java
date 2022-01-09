@@ -25,9 +25,9 @@ public class WebDriverConfiguration {
     @ConditionalOnClass(name = "org.openqa.selenium.chrome.ChromeDriver")
     public WebDriver getChromeDriver() throws Exception {
         // for Mac
-        //System.setProperty("webdriver.chrome.driver","src/test/resources/drivers/chromedriver");
+        System.setProperty("webdriver.chrome.driver","src/test/resources/drivers/chromedriver");
         // for Windows
-        System.setProperty("webdriver.chrome.driver","src/test/resources/drivers/chromedriver.exe");
+        //System.setProperty("webdriver.chrome.driver","src/test/resources/drivers/chromedriver.exe");
         return (WebDriver) Class.forName("org.openqa.selenium.chrome.ChromeDriver")
             .getConstructor().newInstance();
     }

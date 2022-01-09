@@ -35,7 +35,7 @@
             <form action="/" method="get" class="header__search">
                 {# @pebvariable name="search" type="java.lang.String" #}
                 <input class="header__input" type="text" name="search" value="{{ search }}"
-                placeholder="Find what you are looking for" />
+                placeholder="Find what you're looking for" />
                 <input class="header__submit" type="submit" value="Search" />
             </form>
 
