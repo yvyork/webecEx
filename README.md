@@ -10,19 +10,14 @@ Lehner Rainer
 
 ### Description
 
-#### Webapplikation zum verwalten eines Geräteinventars einer Applelandschaft. 
+#### Webapplikation zum verwalten eines Geräteinventars für Computer/Tablets/Phones. 
 
-Ausgehend von einem Interface *Device* können folgende Geräte erfasst werden: 
-1. MacBook
-2. MacMini
-3. iPhone
-4. iPad
+Die drei Klassen Device, Location und Status ermöglichen es, ein gewünschtes Gerät zu erfassen und dieses mit einem 
+spezifischen Standort wie sein Status(new, broken , etc.) zu verknüpfen. 
+Geräte und die jeweiligen Abhängigkeiten können sowohl editiert und gelöscht werden. 
 
-Dabei gehört ein Gerät entweder einer *Person* oder es wird im Betrieb an einem festen *Standort* von mehreren Personen genutzt (unpersönlich).
-Weiter kann ein Gerät auch einer *Studie* zugeordnet werden. Wobei jede Studie eine Studienverantwortliche hat.
-Die Geräte können unterschiedliche Status haben (zb. Persönlich, Pool, Reparatur, etc.).
-Ein Gerät kann unterschiedliches Zubehört haben (Tastatur, Maus, etc).
-Es können neue Geräte erfasst und gelöscht werden. Weiter ist es möglich, einem bestehenden Gerät einen neuen Standort oder persönlichen Nutzer zuzuweisen oder desses Status zu ändern. Wird ein Gerät auf den Status 'Defekt' gesetzt, soll es automatisch aus der Datenbank gelöscht werden. 
+Ausführliche Informationen finden sich in der About-Page der Applikation. 
+
 
 ## ERM
 
@@ -35,12 +30,12 @@ Es können neue Geräte erfasst und gelöscht werden. Weiter ist es möglich, ei
 
 ### Extras
 
-1. BEM
-2. TBA 
+1. Authentifizierung und Authorisierung
+2. User-Service
 
 ## Installation and run instructions
 
-TODO: Add your instructions here if they do not follow the default
+Die Applikation hört auf den Port 80: http://localhost:8080 
 
 ### Run application
 
